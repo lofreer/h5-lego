@@ -37,7 +37,7 @@
   export default {
     data() {
       return {
-        defaultConf: util.copyObj(compConfig['swiper-banner']),
+        defaultConf: util.copyObj(compConfig['comp-swiper-banner']),
         slides: this.banners
       }
     },

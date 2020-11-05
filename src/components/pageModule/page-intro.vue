@@ -19,7 +19,7 @@
 
 <script>
   export default {
-    name: 'PageIntro',
+    name: 'comp-page-intro',
     props: {
       component: {
         type: Object

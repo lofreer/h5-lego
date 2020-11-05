@@ -33,7 +33,7 @@
   export default {
     data() {
       return {
-        defaultConf: util.copyObj(compConfig['news-marquee']),
+        defaultConf: util.copyObj(compConfig['comp-news-marquee']),
         items: this.marquees
       }
     },

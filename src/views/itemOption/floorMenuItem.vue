@@ -33,7 +33,7 @@
   export default {
     data() {
       return {
-        defaultConf: util.copyObj(compConfig['floor-menu']),
+        defaultConf: util.copyObj(compConfig['comp-floor-menu']),
         items: this.menus
       }
     },

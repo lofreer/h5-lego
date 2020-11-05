@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: "Timeout",
+  name: "comp-timeout",
   props: {
     component: {
       type: Object,

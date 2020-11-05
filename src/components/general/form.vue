@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: "BaseForm",
+  name: "comp-form",
   props: {
     component: {
       type: Object,

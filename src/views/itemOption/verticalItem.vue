@@ -37,7 +37,7 @@
     data() {
       return {
         list: this.items,
-        defaultConf: util.copyObj(compConfig['vertical-list'])
+        defaultConf: util.copyObj(compConfig['comp-vertical-list'])
       }
     },
     props: {

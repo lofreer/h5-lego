@@ -4,31 +4,31 @@ module.exports = [
     collapse: false,
     items: [
       {
-        key: 'text',
+        key: 'comp-text',
         text: '文本',
         icon: 'fa-file-text-o'
       }, {
-        key: 'img',
+        key: 'comp-image',
         text: '图片',
         icon: 'fa-file-image-o'
       }, {
-        key: 'form',
+        key: 'comp-form',
         text: '表单',
         icon: 'fa-list'
       }, {
-        key: 'floor-menu',
+        key: 'comp-floor-menu',
         text: '楼层导航',
         icon: 'fa-list-ol'
       }, {
-        key: 'timeout',
+        key: 'comp-timeout',
         text: '倒计时',
         icon: 'fa-hourglass-start'
       }, {
-        key: 'bottom-menu',
+        key: 'comp-bottom-menu',
         text: '底部导航',
         icon: 'fa-adjust'
       }, {
-        key: 'grid-menu',
+        key: 'comp-grid-menu',
         text: '金刚位',
         icon: 'fa-th'
       }
@@ -38,27 +38,27 @@ module.exports = [
     collapse: true,
     items: [
       {
-        key: 'page-title',
+        key: 'comp-page-title',
         text: '标题模块',
         icon: 'fa-header'
       }, {
-        key: 'page-paragraph',
+        key: 'comp-page-paragraph',
         text: '段落模块',
         icon: 'fa-paragraph'
       }, {
-        key: 'page-intro',
+        key: 'comp-page-intro',
         text: '引言模块',
         icon: 'fa-quote-left'
       }, {
-        key: 'page-faq',
+        key: 'comp-page-faq',
         text: 'FAQ模块',
         icon: 'fa-quora'
       }, {
-        key: 'page-guide',
+        key: 'comp-page-guide',
         text: '步骤模块',
         icon: 'fa-step-forward'
       }, {
-        key: 'page-footer',
+        key: 'comp-page-footer',
         text: '页脚模块',
         icon: 'fa-copyright'
       }
@@ -68,11 +68,11 @@ module.exports = [
     collapse: true,
     items: [
       {
-        key: 'swiper-banner',
+        key: 'comp-swiper-banner',
         text: '轮播图',
         icon: 'fa-caret-square-o-right'
       }, {
-        key: 'scroll-left',
+        key: 'comp-scroll-left',
         text: '横向滚动',
         icon: 'fa-exchange'
       }
@@ -82,11 +82,11 @@ module.exports = [
     collapse: true,
     items: [
       {
-        key: 'horizontal-list',
+        key: 'comp-horizontal-list',
         text: '横向列表',
         icon: 'fa-th-list'
       }, {
-        key: 'vertical-list',
+        key: 'comp-vertical-list',
         text: '纵向列表',
         icon: 'fa-columns'
       }
@@ -96,7 +96,7 @@ module.exports = [
     collapse: true,
     items: [
       {
-        key: 'news-marquee',
+        key: 'comp-news-marquee',
         text: '滚动新闻',
         icon: 'fa-newspaper-o'
       }

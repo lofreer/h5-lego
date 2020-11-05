@@ -38,7 +38,7 @@
   export default {
     data() {
       return {
-        defaultConf: util.copyObj(compConfig['grid-menu']),
+        defaultConf: util.copyObj(compConfig['comp-grid-menu']),
         items: this.grids
       }
     },

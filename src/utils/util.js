@@ -1,7 +1,7 @@
 
 export default {
-  createDomID(len) {
-    return Number(Math.random().toString().substr(3, len)).toString(36)
+  createDomID(len = 8) {
+    return (Math.random().toString(36).substr(2) + Date.now().toString(36).substr(4)).substr(-len)
   },
   copyObj(obj) {
     return JSON.parse(JSON.stringify(obj))
@@ -36,12 +36,23 @@ export default {
     const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
       let value = formatObj[key]
       // Note: getDay() returns 0 on Sunday
-      if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ] }
+      if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value] }
       if (result.length > 0 && value < 10) {
         value = '0' + value
       }
       return value || 0
     })
     return time_str
+  },
+  lineToHump(name) {
+    return name.replace(/\_(\w)/g, function (all, letter) {
+      console.log(letter)
+      return letter.toUpperCase()
+    }).replace(/\-(\w)/g, function (all, letter) {
+      return letter.toUpperCase()
+    })
+  },
+  humpToLine(name) {
+    return name.replace(/([A-Z])/g,"_$1").toLowerCase()
   }
 }

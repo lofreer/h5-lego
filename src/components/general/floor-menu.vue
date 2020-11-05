@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: "FloorMenu",
+  name: "comp-floor-menu",
   props: {
     component: {
       type: Object,

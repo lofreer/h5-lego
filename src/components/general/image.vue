@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "BaseImage",
+  name: "comp-image",
   props: {
     component: {
       type: Object,

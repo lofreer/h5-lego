@@ -36,7 +36,7 @@
   export default {
     data() {
       return {
-        defaultConf: util.copyObj(compConfig['bottom-menu']),
+        defaultConf: util.copyObj(compConfig['comp-bottom-menu']),
         menus: this.items
       }
     },

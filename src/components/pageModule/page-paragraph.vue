@@ -18,7 +18,7 @@
 
 <script>
   export default {
-    name: 'PageParagraph',
+    name: 'comp-page-paragraph',
     props: {
       component: {
         type: Object

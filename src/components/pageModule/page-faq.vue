@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: 'PageFaq',
+    name: 'comp-page-faq',
     props: {
       component: {
         type: Object

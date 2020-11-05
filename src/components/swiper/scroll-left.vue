@@ -33,7 +33,7 @@
   import IScroll from 'iscroll'
 
   export default {
-    name: 'ScrollLeft',
+    name: 'comp-scroll-left',
     props: {
       component: {
         type: Object

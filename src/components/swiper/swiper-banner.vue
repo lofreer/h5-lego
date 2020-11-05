@@ -18,7 +18,7 @@
   import 'swiper/swiper-bundle.css'
 
   export default {
-    name: 'SwiperBanner',
+    name: 'comp-swiper-banner',
     props: {
       component: {
         type: Object

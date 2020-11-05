@@ -35,7 +35,7 @@
   export default {
     data() {
       return {
-        defaultConf: util.copyObj(compConfig['scroll-left']),
+        defaultConf: util.copyObj(compConfig['comp-scroll-left']),
         items: this.scrolls
       }
     },

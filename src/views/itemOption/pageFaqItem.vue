@@ -42,7 +42,7 @@
     data() {
       return {
         items: this.paragraphs,
-        defaultConf: util.copyObj(compConfig['page-paragraph'])
+        defaultConf: util.copyObj(compConfig['comp-page-paragraph'])
       }
     },
     components: {

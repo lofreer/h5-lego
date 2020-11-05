@@ -45,7 +45,7 @@
     data() {
       return {
         inputs: this.forms,
-        defaultConf: util.copyObj(compConfig['form']),
+        defaultConf: util.copyObj(compConfig['comp-form']),
         inputTypes: [
           {
             name: '文本',

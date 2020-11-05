@@ -10,7 +10,7 @@
 
 <script>
   export default {
-    name: 'PageTitle',
+    name: 'comp-page-title',
     props: {
       component: {
         type: Object

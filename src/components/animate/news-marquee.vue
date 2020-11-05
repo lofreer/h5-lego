@@ -10,7 +10,7 @@
 <script>
   import NewsMarquee from '@/utils/news-marquee.js'
   export default {
-    name: 'NewsMarquee',
+    name: 'comp-news-marquee',
     props: {
       component: {
         type: Object

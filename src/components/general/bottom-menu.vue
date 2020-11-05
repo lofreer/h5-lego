@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "BottomMenu",
+  name: "comp-bottom-menu",
   props: {
     component: {
       type: Object,

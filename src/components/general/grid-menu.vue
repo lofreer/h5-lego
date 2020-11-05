@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "GridMenu",
+  name: "comp-grid-menu",
   props: {
     component: {
       type: Object,

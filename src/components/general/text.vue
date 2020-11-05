@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "BaseText",
+  name: "comp-text",
   props: {
     component: {
       type: Object,

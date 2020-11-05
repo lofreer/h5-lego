@@ -11,7 +11,7 @@
 } */
 
 module.exports = {
-  text: {
+  'comp-text': {
     title: '文本',
     domId: '',
     domName: '',
@@ -144,7 +144,7 @@ module.exports = {
       }
     ]
   },
-  img: {
+  'comp-image': {
     title: '图片',
     domId: '',
     domName: '',
@@ -221,7 +221,7 @@ module.exports = {
       }]
     }
   },
-  form: {
+  'comp-form': {
     title: '表单',
     domId: '',
     domName: '',
@@ -492,7 +492,7 @@ module.exports = {
       }]
     }
   },
-  'swiper-banner': {
+  'comp-swiper-banner': {
     title: '轮播图',
     domId: '',
     domName: '',
@@ -587,7 +587,7 @@ module.exports = {
       }]
     }
   },
-  'floor-menu': {
+  'comp-floor-menu': {
     title: '楼层导航',
     domId: '',
     domName: '',
@@ -630,7 +630,7 @@ module.exports = {
       }]
     }
   },
-  'scroll-left': {
+  'comp-scroll-left': {
     title: '横向滚动',
     domId: '',
     domName: '',
@@ -671,7 +671,7 @@ module.exports = {
       ]
     }
   },
-  'timeout': {
+  'comp-timeout': {
     title: '倒计时',
     domId: '',
     domName: '',
@@ -737,7 +737,7 @@ module.exports = {
       ]
     }
   },
-  'news-marquee': {
+  'comp-news-marquee': {
     title: '滚动新闻',
     domId: '',
     domName: '',
@@ -828,7 +828,7 @@ module.exports = {
       }]
     }
   },
-  'grid-menu': {
+  'comp-grid-menu': {
     title: '金刚位',
     domId: '',
     domName: '',
@@ -916,7 +916,7 @@ module.exports = {
       ]
     }
   },
-  'bottom-menu': {
+  'comp-bottom-menu': {
     title: '底部导航',
     domId: '',
     domName: '',
@@ -948,7 +948,7 @@ module.exports = {
       }]
     }
   },
-  'page-title': {
+  'comp-page-title': {
     title: '页面标题',
     domId: '',
     domName: '',
@@ -1119,7 +1119,7 @@ module.exports = {
       ]
     }
   },
-  'page-paragraph': {
+  'comp-page-paragraph': {
     title: '段落模块',
     domId: '',
     domName: '',
@@ -1203,7 +1203,7 @@ module.exports = {
       }]
     }
   },
-  'page-intro': {
+  'comp-page-intro': {
     title: '页面引言',
     domId: '',
     domName: '',
@@ -1284,7 +1284,7 @@ module.exports = {
       }
     ]
   },
-  'page-faq': {
+  'comp-page-faq': {
     title: '页面FAQ',
     domId: '',
     domName: '',
@@ -1357,7 +1357,7 @@ module.exports = {
       }]
     }
   },
-  'horizontal-list': {
+  'comp-horizontal-list': {
     title: '横向列表',
     domId: '',
     domName: '',
@@ -1490,7 +1490,7 @@ module.exports = {
       }]
     }
   },
-  'vertical-list': {
+  'comp-vertical-list': {
     title: '纵向列表',
     domId: '',
     domName: '',

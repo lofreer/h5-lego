@@ -1,45 +1,26 @@
-/**
- * 注册自定义组件
- */
-
-import BottomMenu from './general/bottom-menu'
-import FloorMenu from './general/floor-menu'
-import BaseForm from './general/form'
-import GridMenu from './general/grid-menu'
-import BaseImage from './general/image'
-import BaseText from './general/text'
-import Timeout from './general/timeout'
-
-import ScrollLeft from './swiper/scroll-left'
-import SwiperBanner from './swiper/swiper-banner'
-
-import HorizontalList from './list/horizontal-list'
-import VerticalList from './list/vertical-list'
-
-import PageFaq from './pageModule/page-faq'
-import PageIntro from './pageModule/page-intro'
-import PageParagraph from './pageModule/page-paragraph'
-import PageTitle from './pageModule/page-title'
-
-import NewsMarquee from './animate/news-marquee'
-
 export default {
-  install(Vue) {
-    Vue.component(BottomMenu.name, BottomMenu)
-    Vue.component(FloorMenu.name, FloorMenu)
-    Vue.component(BaseForm.name, BaseForm)
-    Vue.component(GridMenu.name, GridMenu)
-    Vue.component(BaseImage.name, BaseImage)
-    Vue.component(BaseText.name, BaseText)
-    Vue.component(Timeout.name, Timeout)
-    Vue.component(NewsMarquee.name, NewsMarquee)
-    Vue.component(ScrollLeft.name, ScrollLeft)
-    Vue.component(SwiperBanner.name, SwiperBanner)
-    Vue.component(HorizontalList.name, HorizontalList)
-    Vue.component(VerticalList.name, VerticalList)
-    Vue.component(PageFaq.name, PageFaq)
-    Vue.component(PageIntro.name, PageIntro)
-    Vue.component(PageParagraph.name, PageParagraph)
-    Vue.component(PageTitle.name, PageTitle)
-  }
+  // 通用组件
+  'comp-bottom-menu': () => import('@/components/general/bottom-menu'),
+  'comp-text': () => import('@/components/general/text'),
+  'comp-image': () => import('@/components/general/image'),
+  'comp-form': () => import('@/components/general/form'),
+  'comp-floor-menu': () => import('@/components/general/floor-menu'),
+  'comp-grid-menu': () => import('@/components/general/grid-menu'),
+  'comp-timeout': () => import('@/components/general/timeout'),
+
+  // 样式模块
+  'comp-scroll-left': () => import('@/components/swiper/scroll-left'),
+  'comp-swiper-banner': () => import('@/components/swiper/swiper-banner'),
+
+  'comp-horizontal-list': () => import('@/components/list/horizontal-list'),
+  'comp-vertical-list': () => import('@/components/list/vertical-list'),
+
+  'comp-page-faq': () => import('@/components/pageModule/page-faq'),
+  'comp-page-intro': () => import('@/components/pageModule/page-intro'),
+  'comp-page-paragraph': () => import('@/components/pageModule/page-paragraph'),
+  'comp-page-title': () => import('@/components/pageModule/page-title'),
+
+  'comp-news-marquee': () => import('@/components/animate/news-marquee'),
+
+
 }
