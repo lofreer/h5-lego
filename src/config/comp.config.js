@@ -890,7 +890,13 @@ module.exports = {
         type: 'color-picker',
         label: '字体颜色',
         attr: 'color',
-        val: '#333333',
+        val: '#ffffff',
+        isNecessary: true
+      }, {
+        type: 'color-picker',
+        label: '背景颜色',
+        attr: 'background-color',
+        val: '',
         isNecessary: true
       }
     ],

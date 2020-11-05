@@ -14,6 +14,7 @@
           @dragleave.self="dragPhoneLeave"
           @drop.self="dropPhone"
           @dragover.prevent
+          :style="getPageStyle"
         >
           <template v-for="(comp, idx) in compList">
             <!--占位提示控件-->
@@ -214,6 +215,26 @@ export default {
       currentConfig: null,
     };
   },
+  computed: {
+    getPageStyle() {
+      const ret = [];
+      this.pageConfig.style.forEach((item) => {
+        const unit = item.unit || "";
+        if (item.val) {
+          if (Array.isArray(item.attr)) {
+            item.attr.forEach((atr, i) => {
+              ret.push(atr + ":" + item.val[i]);
+            });
+          } else if (item.attr === "background-image") {
+            ret.push(item.attr + ":url(" + item.val + ")");
+          } else {
+            ret.push(item.attr + ":" + item.val + unit);
+          }
+        }
+      });
+      return ret.join(";");
+    },
+  },
   mounted() {
     this.$bus.$on("click:show", (idx, tabs) => {
       this.click.index = idx;
@@ -243,7 +264,8 @@ export default {
             JSON.stringify({
               time: Date.now(),
               menu: this.bottomMenu,
-              config: val,
+              page: this.pageConfig,
+              component: val,
             })
           );
         }
@@ -257,10 +279,25 @@ export default {
           JSON.stringify({
             time: Date.now(),
             menu: val,
-            config: this.compList,
+            page: this.pageConfig,
+            component: this.compList,
           })
         );
       },
+    },
+    pageConfig: {
+      handler(val) {
+        localStorage.setItem(
+          "pageDateSet",
+          JSON.stringify({
+            time: Date.now(),
+            page: val,
+            menu: this.bottomMenu,
+            component: this.compList,
+          })
+        );
+      },
+      deep: true
     }
   },
   methods: {
@@ -271,7 +308,6 @@ export default {
     },
     savePageSet() {
       console.warn("save Info: ", JSON.stringify(this.compList));
-      console.warn("save Info: ", JSON.stringify(this.pageConfig));
       this.$message({
         message: "打开chomre devtool查看保存的信息！",
         type: "success",
@@ -297,8 +333,9 @@ export default {
           }
         )
           .then(() => {
-            this.compList = localData.config;
+            this.compList = localData.component;
             this.bottomMenu = localData.menu;
+            this.pageConfig = localData.page
             this.resetCompUnchecked();
           })
           .catch(() => {
