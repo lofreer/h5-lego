@@ -67,6 +67,47 @@ module.exports = {
           val: 'repeat'
         }
       ]
+    },
+    {
+      type: 'input-number',
+      label: '上边距',
+      attr: 'padding-top',
+      val: 0,
+      unit: 'px',
+      min: 0,
+      max: 50,
+      step: 1,
+      isNecessary: true
+    }, {
+      type: 'input-number',
+      label: '右边距',
+      attr: 'padding-right',
+      val: 0,
+      unit: 'px',
+      min: 0,
+      max: 50,
+      step: 1,
+      isNecessary: true
+    }, {
+      type: 'input-number',
+      label: '下边距',
+      attr: 'padding-bottom',
+      val: 0,
+      unit: 'px',
+      min: 0,
+      max: 50,
+      step: 1,
+      isNecessary: true
+    }, {
+      type: 'input-number',
+      label: '左边距',
+      attr: 'padding-left',
+      val: 0,
+      unit: 'px',
+      min: 0,
+      max: 50,
+      step: 1,
+      isNecessary: true
     }
   ],
   weixin: [

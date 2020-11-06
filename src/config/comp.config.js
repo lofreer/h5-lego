@@ -141,6 +141,16 @@ module.exports = {
         max: 50,
         step: 1,
         isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
+        step: 1,
+        isNecessary: true
       }
     ]
   },
@@ -204,6 +214,16 @@ module.exports = {
         unit: 'px',
         min: 0,
         max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
         step: 1,
         isNecessary: true
       }
@@ -341,6 +361,16 @@ module.exports = {
         unit: 'px',
         min: 0,
         max: 100,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
         step: 1,
         isNecessary: true
       }
@@ -574,6 +604,16 @@ module.exports = {
         unit: 'px',
         min: 0,
         max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
         step: 1,
         isNecessary: true
       }
@@ -887,6 +927,16 @@ module.exports = {
         step: 1,
         isNecessary: true
       }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
+        step: 1,
+        isNecessary: true
+      }, {
         type: 'color-picker',
         label: '字体颜色',
         attr: 'color',
@@ -1035,6 +1085,16 @@ module.exports = {
         max: 50,
         step: 1,
         isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
+        step: 1,
+        isNecessary: true
       }
     ],
     others: {
@@ -1146,13 +1206,13 @@ module.exports = {
       }
     ],
     style: [
-      /* {
+      {
         type: 'color-picker',
         label: '背景颜色',
         attr: 'background-color',
-        val: '#ffffff',
+        val: '',
         isNecessary: false
-      },*/ {
+      }, {
         type: 'input-number',
         label: '上边距',
         attr: 'padding-top',
@@ -1192,6 +1252,16 @@ module.exports = {
         max: 50,
         step: 1,
         isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
+        step: 1,
+        isNecessary: true
       }
     ],
     action: {
@@ -1221,6 +1291,12 @@ module.exports = {
         label: '字体颜色',
         attr: 'color',
         val: '#999999',
+        isNecessary: true
+      }, {
+        type: 'color-picker',
+        label: '背景颜色',
+        attr: 'background-color',
+        val: '',
         isNecessary: true
       }, {
         type: 'input-number',
@@ -1281,6 +1357,16 @@ module.exports = {
         max: 50,
         step: 1,
         isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
+        step: 1,
+        isNecessary: true
       }
     ]
   },
@@ -1339,6 +1425,16 @@ module.exports = {
         max: 50,
         step: 1,
         isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
+        step: 1,
+        isNecessary: true
       }
     ],
     action: {
@@ -1370,9 +1466,9 @@ module.exports = {
         isNecessary: false
       }, {
         type: 'input-number',
-        label: '左内边距',
+        label: '上内边距',
         attr: 'padding-left',
-        val: 15,
+        val: 0,
         unit: 'px',
         min: 0,
         max: 50,
@@ -1386,6 +1482,36 @@ module.exports = {
         unit: 'px',
         min: 0,
         max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '下内边距',
+        attr: 'padding-bottom',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左内边距',
+        attr: 'padding-left',
+        val: 15,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
         step: 1,
         isNecessary: true
       }
@@ -1513,12 +1639,42 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
+        label: '右内边距',
+        attr: 'padding-right',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
         label: '下内边距',
         attr: 'padding-bottom',
         val: 15,
         unit: 'px',
         min: 0,
         max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左内边距',
+        attr: 'padding-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
         step: 1,
         isNecessary: true
       }

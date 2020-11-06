@@ -90,14 +90,15 @@ export default {
     handleGo(config) {
       if (config.click && config.click.href) {
         this.tabKey = config.click.href
-        const dom = document.querySelector(`[comp-id="${config.click.href}"]`);
+        const dom = document.querySelector(`[comp-id="${config.click.href}"]`)
+        const wrap = document.querySelector(`[comp-id="wrap-${this.component.domId}"]`)
         if (dom) {
           // Chrome
-          document.body.scrollTop = dom.offsetTop;
+          document.body.scrollTop = dom.offsetTop - wrap.offsetHeight
           // // Firefox
-          document.documentElement.scrollTop = dom.offsetTop;
+          document.documentElement.scrollTop = dom.offsetTop - wrap.offsetHeight
           // // Safari
-          window.pageYOffset = dom.offsetTop;
+          window.pageYOffset = dom.offsetTop - wrap.offsetHeight
         }
       }
     },

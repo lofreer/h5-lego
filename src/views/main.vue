@@ -14,6 +14,7 @@
           @dragleave.self="dragPhoneLeave"
           @drop.self="dropPhone"
           @dragover.prevent
+          @click.capture="showPageSet"
           :style="getPageStyle"
         >
           <template v-for="(comp, idx) in compList">
