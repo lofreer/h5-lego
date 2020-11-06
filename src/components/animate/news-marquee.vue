@@ -1,6 +1,7 @@
 <template>
   <div :class="['comp-content', component.active ? 'active' : '']"
-       :style="getStyle">
+       :style="getStyle"
+       :comp-id="component.domId">
     <ul class="marquee-box" id="line-marquee">
       <li :style="{lineHeight: component.style[2].val + 'px'}" v-for="(mq, idx) in marquees" :key="idx" class="marquee-item">{{mq.text}}</li>
     </ul>

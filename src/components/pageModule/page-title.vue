@@ -1,6 +1,7 @@
 <template>
   <div :class="['comp-content', component.active ? 'active' : '']"
-       :style="getStyle">
+       :style="getStyle"
+       :comp-id="component.domId">
     <div class="page-title">
       <h3 :style="getH3Style">{{ component.base[0].val }}</h3>
       <p v-if="component.base[1].val" :style="getPStyle">{{ component.base[1].val }}</p>

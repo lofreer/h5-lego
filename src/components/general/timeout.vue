@@ -2,6 +2,7 @@
   <div
     :class="['comp-content', component.active ? 'active' : '']"
     :style="getStyle"
+    :comp-id="component.domId"
   >
     <div class="timeout-box">
       <div v-if="!imgUrl" class="image-placeholder">

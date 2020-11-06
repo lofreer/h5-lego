@@ -1,6 +1,7 @@
 <template>
   <div :class="['comp-content', component.active ? 'active' : '']"
-       :style="getStyle">
+       :style="getStyle"
+       :comp-id="component.domId">
 
     <section v-show="component.style[0].val === 'scroll-x'" class="scroll-left">
       <div id="scroll-one" class="scroll-wrapper">

@@ -2,6 +2,7 @@
   <div
     :class="['comp-content', component.active ? 'active' : '']"
     :style="getStyle"
+    :comp-id="component.domId"
   >
     <ul class="grid-menu">
       <li

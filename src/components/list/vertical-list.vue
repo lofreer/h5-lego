@@ -1,6 +1,7 @@
 <template>
   <div :class="['comp-content', component.active ? 'active' : '']"
-       :style="getStyle">
+       :style="getStyle"
+       :comp-id="component.domId">
     <div class="page-list">
       <div v-for="(item, idx) in list" class="page-list-item"
            :key="idx" :style="getItemStyle('vertical-list-item')">

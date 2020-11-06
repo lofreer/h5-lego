@@ -1,6 +1,7 @@
 <template>
   <div :class="['comp-content', component.active ? 'active' : '']"
-       :style="getStyle">
+       :style="getStyle"
+       :comp-id="component.domId">
     <div class="page-faq">
       <div class="faq-item" v-for="(item, idx) in component.action.config" :key="idx">
         {{ item.text }}

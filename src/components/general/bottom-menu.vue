@@ -1,5 +1,5 @@
 <template>
-  <div class="bottom-menu" :style="getStyle">
+  <div class="bottom-menu" :comp-id="component.domId" :style="getStyle">
     <div
       class="menu-item"
       :style="{ width: 750 / menus.length + 'px' }"

@@ -1,6 +1,7 @@
 <template>
   <div :class="['comp-content', component.active ? 'active' : '']"
-       :style="getStyle">
+       :style="getStyle"
+       :comp-id="component.domId">
     <div class="page-paragraph__title">
       <span class="title-icon">
         <i :class="component.base[0].val"></i>

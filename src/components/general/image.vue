@@ -2,6 +2,7 @@
   <div
     :class="['comp-content', component.active ? 'active' : '']"
     :style="getStyle"
+    :comp-id="component.domId"
   >
     <div class="image-box">
       <img v-if="imgUrl" :src="imgUrl" />

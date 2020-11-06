@@ -1,6 +1,7 @@
 <template>
   <div :class="['comp-content', component.active ? 'active' : '']"
-       :style="getStyle">
+       :style="getStyle"
+       :comp-id="component.domId">
     <div class="swiper-container" :id="component.domId" :style="{width: width, height: height}">
       <div class="swiper-wrapper">
         <div v-for="(banner, idx) in banners" :key="idx" class="swiper-slide">

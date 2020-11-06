@@ -2,6 +2,7 @@
   <div
     :class="['comp-content', component.active ? 'active' : '']"
     :style="style"
+    :comp-id="component.domId"
   >
     <div class="form-box">
       <template v-if="inputs.length">

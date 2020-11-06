@@ -2,6 +2,7 @@
   <div
     :class="['comp-content', component.active ? 'active' : '']"
     :style="getStyle"
+    :comp-id="component.domId"
   >
     <div class="text-box" v-html="getText"></div>
   </div>

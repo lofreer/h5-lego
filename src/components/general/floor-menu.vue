@@ -1,6 +1,9 @@
 <template>
-  <div :class="['comp-content', component.active ? 'active' : '']">
-    <div class="floor-menu" :style="{ backgroundColor: backgroundColor }">
+  <div
+    :class="['comp-content', component.active ? 'active' : '']"
+    :comp-id="`wrap-${component.domId}`"
+  >
+    <div class="floor-menu" :comp-id="component.domId" :style="{ backgroundColor: backgroundColor }">
       <div class="floor-menu-list">
         <div class="floor-menu-inner">
           <a
@@ -9,6 +12,7 @@
             :style="getItemStyle(idx)"
             v-for="(item, idx) in items"
             :key="idx"
+            @click="handleGo(item)"
             >{{ item.text }}</a
           >
         </div>
@@ -44,6 +48,8 @@ export default {
   },
   data() {
     return {
+      scroll: '',
+      tabKey: 0,
       items: this.component.action.config,
       backgroundColor: this.component.style[0].val,
       fillColor: this.component.style[2].val,
@@ -58,11 +64,20 @@ export default {
       },
       deep: true,
     },
+    scroll: {
+      handler() {
+        this.loadSroll()
+      }
+    }
+  },
+  mounted() {
+   window.addEventListener('scroll', this.dataScroll);
   },
   methods: {
     getItemStyle(idx) {
       const ret = [];
-      if (idx === 0) {
+      if (idx === this.tabKey || (this.items[idx].click && this.items[idx].click.href === this.tabKey) ) {
+      // if (idx === 0) {
         ret.push("background-color:" + this.component.style[1].val);
         ret.push("color:" + this.component.style[3].val);
       } else {
@@ -71,17 +86,64 @@ export default {
       }
       return ret.join(";");
     },
+    // 导航跳转
+    handleGo(config) {
+      if (config.click && config.click.href) {
+        this.tabKey = config.click.href
+        const dom = document.querySelector(`[comp-id="${config.click.href}"]`);
+        if (dom) {
+          // Chrome
+          document.body.scrollTop = dom.offsetTop;
+          // // Firefox
+          document.documentElement.scrollTop = dom.offsetTop;
+          // // Safari
+          window.pageYOffset = dom.offsetTop;
+        }
+      }
+    },
+    dataScroll() {
+      this.scroll = document.documentElement.scrollTop || document.body.scrollTop;
+    },
+    loadSroll() {
+      const ids = this.items.filter(v => v.click).map(v => v.click.href)
+      const wrap = document.querySelector(`[comp-id="wrap-${this.component.domId}"]`)
+      const node = document.querySelector(`[comp-id="${this.component.domId}"]`)
+      const sections = [...document.querySelectorAll(ids.map(v => `[comp-id="${v}"]`).join(','))].reverse()
+      sections.some((item, index) => {
+        if (this.scroll >= item.offsetTop - 100) {
+          this.tabKey = item.getAttribute('comp-id')
+          return true
+        }
+      })
+      if (this.scroll >= wrap.offsetTop) {
+        node.classList.add('top')
+      } else {
+        node.classList.remove('top')
+      }
+    }
   },
 };
 </script>
 
 <style lang="less" scoped>
+.comp-content {
+  height: 40px;
+}
 .floor-menu {
   position: relative;
   display: flex;
   width: 100%;
   height: 40px;
   line-height: 40px;
+
+  &.top {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 0;
+  }
 
   .floor-menu-list {
     width: 335px;
