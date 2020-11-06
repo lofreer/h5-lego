@@ -31,7 +31,11 @@ module.exports = [
         key: 'comp-grid-menu',
         text: '金刚位',
         icon: 'fa-th'
-      }
+      }, {
+        key: 'comp-empty',
+        text: '空白',
+        icon: 'fa-file-o'
+      },
     ]
   }, {
     title: '样式模块',

@@ -162,21 +162,21 @@ export default {
                   );
                 }
               } else {
-                if (img.width > 750) {
-                  invalide = false;
-                  this.$alert("图片宽度不能超过750px", "提示");
-                }
-                if (file.type === "image/gif") {
-                  if (file.size / 1024 > 2048) {
-                    invalide = false;
-                    this.$alert("gif图片不能超过2048k", "提示");
-                  }
-                } else {
-                  if (file.size / 1024 > 512) {
-                    invalide = false;
-                    this.$alert("jpeg、png图片不能超过512k", "提示");
-                  }
-                }
+                // if (img.width > 750) {
+                //   invalide = false;
+                //   this.$alert("图片宽度不能超过750px", "提示");
+                // }
+                // if (file.type === "image/gif") {
+                //   if (file.size / 1024 > 2048) {
+                //     invalide = false;
+                //     this.$alert("gif图片不能超过2048k", "提示");
+                //   }
+                // } else {
+                //   if (file.size / 1024 > 512) {
+                //     invalide = false;
+                //     this.$alert("jpeg、png图片不能超过512k", "提示");
+                //   }
+                // }
               }
 
               if (invalide) {
@@ -216,10 +216,10 @@ export default {
               this.$alert("图片高度必须为 " + this.item.limit.h + "px", "提示");
             }
           } else {
-            if (img.naturalWidth > 750) {
-              invalide = false;
-              this.$alert("图片宽度不能超过750px", "提示");
-            }
+            // if (img.naturalWidth > 750) {
+            //   invalide = false;
+            //   this.$alert("图片宽度不能超过750px", "提示");
+            // }
           }
           if (invalide) {
             const width = 750;
@@ -277,6 +277,10 @@ export default {
 
   .el-icon-upload {
     margin-top: 20px;
+  }
+  .el-upload__text {
+    position: relative;
+    z-index: 1;
   }
 }
 

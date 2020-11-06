@@ -7,6 +7,7 @@ export default {
   'comp-floor-menu': () => import('@/components/general/floor-menu'),
   'comp-grid-menu': () => import('@/components/general/grid-menu'),
   'comp-timeout': () => import('@/components/general/timeout'),
+  'comp-empty': () => import('@/components/general/empty'),
 
   // 样式模块
   'comp-scroll-left': () => import('@/components/swiper/scroll-left'),

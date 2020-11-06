@@ -11,6 +11,50 @@
 } */
 
 module.exports = {
+  'comp-empty': {
+    title: '空白',
+    domId: '',
+    domName: '',
+    style: [
+      {
+        type: 'input-number',
+        label: '容器高度',
+        attr: 'height',
+        val: '10',
+        unit: 'px',
+        isNecessary: false
+      }, {
+        type: 'upload',
+        label: '背景图',
+        attr: 'background-image',
+        val: '',
+        isNecessary: false
+      }, {
+        type: 'color-picker',
+        label: '背景颜色',
+        attr: 'background-color',
+        val: '',
+        isNecessary: false
+      }, {
+        type: 'select',
+        label: '背景尺寸',
+        attr: 'background-size',
+        val: 'contain',
+        options: [
+          {
+            name: '无',
+            val: 'inherit'
+          }, {
+            name: '宽高裁剪',
+            val: 'cover'
+          }, {
+            name: '宽高自适应',
+            val: 'contain'
+          }
+        ]
+      }
+    ]
+  },
   'comp-text': {
     title: '文本',
     domId: '',
@@ -143,6 +187,26 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
         label: '圆角',
         attr: 'border-radius',
         val: 0,
@@ -210,6 +274,26 @@ module.exports = {
         type: 'input-number',
         label: '左边距',
         attr: 'padding-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
         val: 0,
         unit: 'px',
         min: 0,
@@ -361,6 +445,26 @@ module.exports = {
         unit: 'px',
         min: 0,
         max: 100,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
         step: 1,
         isNecessary: true
       }, {
@@ -608,6 +712,26 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
         label: '圆角',
         attr: 'border-radius',
         val: 0,
@@ -837,6 +961,26 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
         label: '字体大小',
         attr: 'font-size',
         val: 12,
@@ -921,6 +1065,26 @@ module.exports = {
         label: '左边距',
         attr: 'padding-left',
         val: 10,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
         unit: 'px',
         min: 0,
         max: 50,
@@ -1080,6 +1244,26 @@ module.exports = {
         label: '左边距',
         attr: 'padding-left',
         val: 20,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
         unit: 'px',
         min: 0,
         max: 50,
@@ -1254,6 +1438,26 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
         label: '圆角',
         attr: 'border-radius',
         val: 0,
@@ -1359,6 +1563,26 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
         label: '圆角',
         attr: 'border-radius',
         val: 0,
@@ -1420,6 +1644,26 @@ module.exports = {
         label: '左边距',
         attr: 'padding-left',
         val: 15,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
         unit: 'px',
         min: 0,
         max: 50,
@@ -1499,6 +1743,26 @@ module.exports = {
         label: '左内边距',
         attr: 'padding-left',
         val: 15,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
         unit: 'px',
         min: 0,
         max: 50,
@@ -1661,6 +1925,26 @@ module.exports = {
         type: 'input-number',
         label: '左内边距',
         attr: 'padding-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
         val: 0,
         unit: 'px',
         min: 0,
