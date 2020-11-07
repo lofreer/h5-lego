@@ -147,7 +147,7 @@ module.exports = {
         isNecessary: false
       }, {
         type: 'input-number',
-        label: '上边距',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 10,
         unit: 'px',
@@ -157,7 +157,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 15,
         unit: 'px',
@@ -167,7 +167,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 10,
         unit: 'px',
@@ -177,7 +177,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 15,
         unit: 'px',
@@ -187,7 +187,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -197,7 +197,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -242,7 +242,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '上边距',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 0,
         unit: 'px',
@@ -252,7 +252,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 0,
         unit: 'px',
@@ -262,7 +262,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 0,
         unit: 'px',
@@ -272,7 +272,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 0,
         unit: 'px',
@@ -282,7 +282,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -292,7 +292,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -409,7 +409,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '容器上白',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 10,
         unit: 'px',
@@ -419,7 +419,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '容器右白',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 15,
         unit: 'px',
@@ -429,7 +429,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '容器下白',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 10,
         unit: 'px',
@@ -439,7 +439,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '容器左白',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 15,
         unit: 'px',
@@ -449,7 +449,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -459,7 +459,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -672,7 +672,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '上边距',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 0,
         unit: 'px',
@@ -682,7 +682,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 0,
         unit: 'px',
@@ -692,7 +692,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 0,
         unit: 'px',
@@ -702,7 +702,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 0,
         unit: 'px',
@@ -712,7 +712,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -722,7 +722,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -785,7 +785,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -795,7 +795,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -971,7 +971,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 10,
         unit: 'px',
@@ -981,7 +981,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 10,
         unit: 'px',
@@ -991,7 +991,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -1001,7 +1001,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -1030,6 +1030,23 @@ module.exports = {
         label: '字体颜色',
         attr: 'color',
         val: '#333333',
+        isNecessary: true
+      },
+      {
+        type: 'color-picker',
+        label: '背景颜色',
+        attr: 'background-color',
+        val: '#ffffff',
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
+        step: 1,
         isNecessary: true
       }
     ],
@@ -1062,7 +1079,7 @@ module.exports = {
     style: [
       {
         type: 'input-number',
-        label: '上边距',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 0,
         unit: 'px',
@@ -1072,7 +1089,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 10,
         unit: 'px',
@@ -1082,7 +1099,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 10,
         unit: 'px',
@@ -1092,7 +1109,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 10,
         unit: 'px',
@@ -1102,7 +1119,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -1112,7 +1129,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -1241,7 +1258,7 @@ module.exports = {
         ]
       }, {
         type: 'input-number',
-        label: '上边距',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 20,
         unit: 'px',
@@ -1251,7 +1268,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 20,
         unit: 'px',
@@ -1261,7 +1278,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 20,
         unit: 'px',
@@ -1271,7 +1288,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 20,
         unit: 'px',
@@ -1281,7 +1298,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -1291,7 +1308,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -1428,7 +1445,7 @@ module.exports = {
         isNecessary: false
       }, {
         type: 'input-number',
-        label: '上边距',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 10,
         unit: 'px',
@@ -1438,7 +1455,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 10,
         unit: 'px',
@@ -1448,7 +1465,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 0,
         unit: 'px',
@@ -1458,7 +1475,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 10,
         unit: 'px',
@@ -1468,7 +1485,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -1478,7 +1495,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -1553,7 +1570,7 @@ module.exports = {
         isNecessary: false
       }, {
         type: 'input-number',
-        label: '上边距',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 10,
         unit: 'px',
@@ -1563,7 +1580,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 15,
         unit: 'px',
@@ -1573,7 +1590,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 10,
         unit: 'px',
@@ -1583,7 +1600,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 15,
         unit: 'px',
@@ -1593,7 +1610,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -1603,7 +1620,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -1641,7 +1658,7 @@ module.exports = {
         isNecessary: false
       }, {
         type: 'input-number',
-        label: '上边距',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 10,
         unit: 'px',
@@ -1651,7 +1668,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 15,
         unit: 'px',
@@ -1661,7 +1678,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 10,
         unit: 'px',
@@ -1671,7 +1688,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 15,
         unit: 'px',
@@ -1681,7 +1698,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -1691,7 +1708,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -1740,8 +1757,8 @@ module.exports = {
         isNecessary: false
       }, {
         type: 'input-number',
-        label: '上内边距',
-        attr: 'padding-left',
+        label: '内边距-上',
+        attr: 'padding-top',
         val: 0,
         unit: 'px',
         min: 0,
@@ -1750,7 +1767,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右内边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 15,
         unit: 'px',
@@ -1760,7 +1777,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下内边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 0,
         unit: 'px',
@@ -1770,7 +1787,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左内边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 15,
         unit: 'px',
@@ -1780,7 +1797,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -1790,7 +1807,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
@@ -1923,7 +1940,7 @@ module.exports = {
         isNecessary: false
       }, {
         type: 'input-number',
-        label: '上内边距',
+        label: '内边距-上',
         attr: 'padding-top',
         val: 15,
         unit: 'px',
@@ -1933,7 +1950,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右内边距',
+        label: '内边距-右',
         attr: 'padding-right',
         val: 0,
         unit: 'px',
@@ -1943,7 +1960,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下内边距',
+        label: '内边距-下',
         attr: 'padding-bottom',
         val: 15,
         unit: 'px',
@@ -1953,7 +1970,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左内边距',
+        label: '内边距-左',
         attr: 'padding-left',
         val: 0,
         unit: 'px',
@@ -1963,7 +1980,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左空白',
+        label: '外边距-左',
         attr: 'margin-left',
         val: 0,
         unit: 'px',
@@ -1973,7 +1990,7 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右空白',
+        label: '外边距-右',
         attr: 'margin-right',
         val: 0,
         unit: 'px',
