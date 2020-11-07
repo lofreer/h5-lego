@@ -46,6 +46,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.comp-content {
+  overflow: hidden;
+}
 .image-box {
   position: relative;
   overflow: hidden;

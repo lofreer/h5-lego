@@ -783,6 +783,36 @@ module.exports = {
         attr: 'color:hover',
         val: '#D0021B',
         isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '左空白',
+        attr: 'margin-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '右空白',
+        attr: 'margin-right',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '圆角',
+        attr: 'border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 20,
+        step: 1,
+        isNecessary: true
       }
     ],
     action: {
