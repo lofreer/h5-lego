@@ -106,6 +106,9 @@
 
 <script>
 import util from "@/utils/util.js";
+import appSidebar from '@/views/layout/sidebar.vue'
+import appToolbar from '@/views/layout/toolbar.vue'
+import appPageOpt from '@/views/layout/pageOption.vue'
 // 页面默认配置
 import pageOption from "@/config/page.config.js";
 // 组件列表
@@ -114,9 +117,9 @@ import libs from "@/components"
 export default {
   name: "AppMain",
   components: {
-    appSidebar: () => import("@/views/layout/sidebar.vue"),
-    appToolbar: () => import("@/views/layout/toolbar.vue"),
-    appPageOpt: () => import("@/views/layout/pageOption.vue"),
+    appSidebar,
+    appToolbar,
+    appPageOpt,
     clickConfig: () => import("@/common/click.vue"),
     previewDialog: () => import("@/common/preview.vue"),
   },

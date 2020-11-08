@@ -25,9 +25,12 @@
 </template>
 
 <script>
+// import formItem from '@/common/formItem.vue'
+
 export default {
   name: "AppPageOption",
   components: {
+    // formItem,
     formItem: () => import("@/common/formItem.vue"),
   },
   props: {

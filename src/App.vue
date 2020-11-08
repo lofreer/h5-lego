@@ -6,11 +6,13 @@
 </template>
 
 <script>
+  import appHeader from '@/views/layout/header.vue'
+  import appBody from '@/views/main.vue'
   export default {
     name: 'app',
     components: {
-      appHeader: () => import("@/views/layout/header.vue"),
-      appBody: () => import("@/views/main.vue"),
+      appHeader,
+      appBody
     }
   }
 </script>
