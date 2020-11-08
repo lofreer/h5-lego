@@ -1,24 +1,27 @@
 <template>
   <el-form ref="options-form" label-width="80px" size="mini">
-    <h2>【页面配置】</h2>
+    <h2>【{{ option.title }}】</h2>
+    <el-form-item class="small" label="组件编号：">
+      <span>{{ option.domId }}</span>
+    </el-form-item>
+    <el-form-item class="small" label="组件名称：">
+      <el-input
+        v-model="option.domName"
+        maxlength="30"
+        placeholder="非必填，页内跳转配置使用"
+      ></el-input>
+    </el-form-item>
 
-    <template>
+    <template v-if="option.base && option.base.length">
       <template v-for="(item, idx) in option.base">
         <form-item :item="item" :index="idx" :key="idx"></form-item>
       </template>
     </template>
 
-    <template>
+    <template v-if="option.style && option.style.length">
       <h3><i class="el-icon-setting"></i> 样式配置</h3>
       <template v-for="(item, idx) in option.style">
-        <form-item :item="item" :index="idx" :key="`${idx}-conf`"></form-item>
-      </template>
-    </template>
-
-    <template>
-      <h3><i class="el-icon-setting"></i> 分享配置</h3>
-      <template v-for="(item, idx) in option.weixin">
-        <form-item :item="item" :index="idx" :key="`${idx}-share`"></form-item>
+        <form-item :item="item" :index="idx" :key="`${idx}-a`"></form-item>
       </template>
     </template>
   </el-form>
@@ -26,7 +29,9 @@
 
 <script>
 export default {
-  name: "AppPageOption",
+  data() {
+    return {};
+  },
   components: {
     formItem: () => import("@/common/formItem.vue"),
   },
@@ -85,6 +90,27 @@ export default {
 
     .el-form-item__label {
       padding-right: 0;
+      font-size: 13px;
+    }
+  }
+
+  .form-list-panel {
+    margin-top: 15px;
+    border: 1px solid #e8e8e8;
+    padding: 10px 10px 5px 5px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .list-item-opt {
+      text-align: right;
+
+      > a {
+        margin-left: 10px;
+        color: #2aa7ff;
+        font-size: 12px;
+      }
     }
   }
 }

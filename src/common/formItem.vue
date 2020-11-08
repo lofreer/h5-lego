@@ -159,7 +159,6 @@
 </template>
 
 <script>
-import upload from "@/common/upload.vue";
 export default {
   props: {
     item: {
@@ -170,7 +169,7 @@ export default {
     },
   },
   components: {
-    upload,
+    upload: () => import("@/common/upload.vue"),
   },
   methods: {
     setFont(item, attr) {

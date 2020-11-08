@@ -87,8 +87,12 @@
 
     <preview-dialog :show.sync="previewShow"></preview-dialog>
 
-    <app-opt v-if="currentConfig" :option="currentConfig"></app-opt>
-    <app-page-opt v-else :option="pageConfig"></app-page-opt>
+    <div class="app-option">
+      <template v-if="currentConfig">
+        <component :is="comps[`${currentKey}-option`]" :option="currentConfig"></component>
+      </template>
+      <app-page-opt v-else :option="pageConfig"></app-page-opt>
+    </div>
 
     <click-config
       :show.sync="clickShow"
@@ -102,27 +106,19 @@
 
 <script>
 import util from "@/utils/util.js";
-import appSidebar from "@/views/layout/sidebar.vue";
-import appToolbar from "@/views/layout/toolbar.vue";
-import appOpt from "@/views/layout/option.vue";
-import appPageOpt from "@/views/layout/pageOption.vue";
-import clickConfig from "@/common/click.vue";
-import previewDialog from "@/common/preview.vue";
 // 页面默认配置
 import pageOption from "@/config/page.config.js";
-// 组件默认配置
-import compConfig from "@/config/comp.config.js";
+// 组件列表
 import libs from "@/components"
 
 export default {
   name: "AppMain",
   components: {
-    appSidebar,
-    appToolbar,
-    appOpt,
-    appPageOpt,
-    clickConfig,
-    previewDialog
+    appSidebar: () => import("@/views/layout/sidebar.vue"),
+    appToolbar: () => import("@/views/layout/toolbar.vue"),
+    appPageOpt: () => import("@/views/layout/pageOption.vue"),
+    clickConfig: () => import("@/common/click.vue"),
+    previewDialog: () => import("@/common/preview.vue"),
   },
   data() {
     return {
@@ -140,6 +136,7 @@ export default {
       ],
       bottomMenu: null,
       pageConfig: util.copyObj(pageOption),
+      currentKey: '',
       currentIndex: -1,
       currentConfig: null,
     };
@@ -281,34 +278,40 @@ export default {
       });
     },
     replacePlaceholderWithComp(index, key) {
-      const comp = util.copyObj(compConfig[key]);
-      const config = {
-        type: key,
-        active: true,
-        domId: key + "-" + util.createDomID(),
-      };
-      Object.assign(comp, config);
-      this.compList.splice(index + 1, 0, comp);
-      // 再插入一个占位控件
-      this.compList.splice(index + 2, 0, {
-        type: "placeholder",
-      });
-      // 显示配置项
-      this.currentIndex = index + 1;
-      this.currentConfig = comp;
+      this.comps[`${key}-config`]().then(res => {
+        const comp = util.copyObj(res);
+        const config = {
+          type: key,
+          active: true,
+          domId: key + "-" + util.createDomID(),
+        };
+        Object.assign(comp, config);
+        this.compList.splice(index + 1, 0, comp);
+        // 再插入一个占位控件
+        this.compList.splice(index + 2, 0, {
+          type: "placeholder",
+        });
+        // 显示配置项
+        this.currentKey = key
+        this.currentIndex = index + 1;
+        this.currentConfig = comp;
+      })
     },
     addBottomMenu() {
-      const comp = util.copyObj(compConfig["bottom-menu"]);
-      const config = {
-        type: "bottom-menu",
-        active: true,
-        domId: "bottom-menu-" + util.createDomID(),
-      };
-      Object.assign(comp, config);
-      this.bottomMenu = comp;
-      // 显示配置项
-      this.currentIndex = -1;
-      this.currentConfig = comp;
+      this.comps[`bottom-menu-config`]().then(res => {
+        const comp = util.copyObj(res);
+        const config = {
+          type: "bottom-menu",
+          active: true,
+          domId: "bottom-menu-" + util.createDomID(),
+        };
+        Object.assign(comp, config);
+        this.bottomMenu = comp;
+        // 显示配置项
+        this.currentKey = ''
+        this.currentIndex = -1;
+        this.currentConfig = comp;
+      })
     },
     clickComp(e) {
       if (this.bottomMenu) this.bottomMenu.active = false;
@@ -316,6 +319,7 @@ export default {
       this.compList.forEach((val, index) => {
         if (index === idx) {
           val.active = true;
+          this.currentKey = val.type
           this.currentIndex = index;
           this.currentConfig = val;
         } else {
@@ -388,7 +392,7 @@ export default {
 
       if (key === "bottom-menu") return;
       const idx = parseInt(target.dataset.index);
-      if (compConfig[key] && this.comps[key]) {
+      if (this.comps[`${key}-config`] && this.comps[key]) {
         this.resetCompUnchecked();
         this.replacePlaceholderWithComp(idx, key);
       } else {
@@ -409,7 +413,7 @@ export default {
         target.classList.remove("active");
         const key = e.dataTransfer.getData("cmp-type");
         const idx = parseInt(target.dataset.index);
-        if (compConfig[key]) {
+        if (this.comps[`${key}-config`]) {
           if (key === "bottom-menu") {
             if (this.bottomMenu) {
               this.$message.info("已经存在一个底部导航组件了，请勿重复添加！");
@@ -587,5 +591,11 @@ export default {
       }
     }
   }
+}
+.app-option {
+  width: 360px;
+  padding: 0 10px 0 5px;
+  overflow: auto;
+  border-left: 1px solid #e8e8e8;
 }
 </style>
