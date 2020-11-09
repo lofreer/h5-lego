@@ -1,25 +1,18 @@
 import Vue from 'vue'
+import moment from 'moment'
 import App from './App.vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import router from './router'
+import plugin from './plugin'
 import 'font-awesome/css/font-awesome.min.css'
 import 'normalize.css/normalize.css'
 
 Vue.config.productionTip = false
 
-Vue.prototype.$editor = true
+Vue.prototype.$moment = moment
 
-Vue.use(ElementUI, {
-  size: 'small'
-})
-
-const eventBus = {
-  install(Vue) {
-    Vue.prototype.$bus = new Vue()
-  }
-}
-Vue.use(eventBus)
+Vue.use(plugin)
 
 new Vue({
+  router,
   render: h => h(App)
 }).$mount('#app')

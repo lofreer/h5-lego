@@ -8,26 +8,26 @@ module.exports = {
   // webpack配置
   chainWebpack: config => {
     // 生产环境配置
-    if (isProduction) {
-      // 删除预加载
-      config.plugins.delete('preload');
-      config.plugins.delete('prefetch');
-      // 压缩代码
-      config.optimization.minimize(true);
-      // 分割代码
-      config.optimization.splitChunks({
-        chunks: 'all'
-      })
-    }
+    // if (isProduction) {
+    // 删除预加载
+    config.plugins.delete('preload');
+    config.plugins.delete('prefetch');
+    // 压缩代码
+    config.optimization.minimize(true);
+    // 分割代码
+    config.optimization.splitChunks({
+      chunks: 'all'
+    })
+    // }
   },
   configureWebpack: config => {
     // 生产环境配置
-    if (isProduction) {
-      // 打包优化，去除console.log
-      // vuecli4默认引入依赖terser插件，在这个基础上直接添加属性即可
-      config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
-      config.optimization.minimizer[0].options.terserOptions.compress.pure_funcs = ['console.log']
-    }
+    // if (isProduction) {
+    // 打包优化，去除console.log
+    // vuecli4默认引入依赖terser插件，在这个基础上直接添加属性即可
+    config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
+    config.optimization.minimizer[0].options.terserOptions.compress.pure_funcs = ['console.log']
+    // }
   },
   // css相关配置
   css: {
