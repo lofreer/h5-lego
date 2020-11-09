@@ -81,7 +81,7 @@ export default {
       })
     },
     handleToPreview(row) {
-
+      window.open(`http://render.koudaikaoyan.com/${row.id}`, '_blank')
     },
     handleToEdit(row) {
       this.$router.push(`/editor/${row.id}`)

@@ -16,7 +16,7 @@
         <iframe
           id="ifr-preview"
           allowtransparency="yes"
-          src="https://yangyuji.github.io/h5-factory/static/preview/index.html"
+          :src="`http://render.koudaikaoyan.com/${$route.params.pageId || ''}}`"
         ></iframe>
 
         <div class="pre-desc">
