@@ -106,13 +106,14 @@
 
 <script>
 import util from "@/utils/util.js";
-import appSidebar from '@/views/layout/sidebar.vue'
-import appToolbar from '@/views/layout/toolbar.vue'
-import appPageOpt from '@/views/layout/pageOption.vue'
+import appSidebar from '@/views/app/sidebar.vue'
+import appToolbar from '@/views/app/toolbar.vue'
+import appPageOpt from '@/views/app/pageOption.vue'
 // 页面默认配置
 import pageOption from "@/config/page.config.js";
 // 组件列表
 import libs from "@/components"
+import { pageList, pageOne, pageCreate, pageUpdate, pageDestroy } from '@/api/page'
 
 export default {
   name: "AppMain",
@@ -164,6 +165,9 @@ export default {
       return ret.join(";");
     },
   },
+  created() {
+    this.fetchPageConfig()
+  },
   mounted() {
     this.$bus.$on("click:show", (idx, tabs) => {
       this.click.index = idx;
@@ -184,55 +188,83 @@ export default {
         }
       }
     });
-    this.readLocalData();
+    // this.readLocalData();
     this.showPageSet();
   },
   watch: {
     compList: {
       handler(val) {
-        if (val && val.length > 1) {
-          localStorage.setItem(
-            "pageDateSet",
-            JSON.stringify({
-              time: Date.now(),
-              menu: this.bottomMenu,
-              page: this.pageConfig,
-              component: val,
-            })
-          );
-        }
+        // if (val && val.length > 1) {
+        //   localStorage.setItem(
+        //     "pageDateSet",
+        //     JSON.stringify({
+        //       time: Date.now(),
+        //       menu: this.bottomMenu,
+        //       page: this.pageConfig,
+        //       component: val,
+        //     })
+        //   );
+        // }
+        this.updatePageConfig()
       },
       deep: true,
     },
     bottomMenu: {
       handler(val) {
-        localStorage.setItem(
-          "pageDateSet",
-          JSON.stringify({
-            time: Date.now(),
-            menu: val,
-            page: this.pageConfig,
-            component: this.compList,
-          })
-        );
+        // localStorage.setItem(
+        //   "pageDateSet",
+        //   JSON.stringify({
+        //     time: Date.now(),
+        //     menu: val,
+        //     page: this.pageConfig,
+        //     component: this.compList,
+        //   })
+        // );
+        this.updatePageConfig()
       },
     },
     pageConfig: {
       handler(val) {
-        localStorage.setItem(
-          "pageDateSet",
-          JSON.stringify({
-            time: Date.now(),
-            page: val,
-            menu: this.bottomMenu,
-            component: this.compList,
-          })
-        );
+        // localStorage.setItem(
+        //   "pageDateSet",
+        //   JSON.stringify({
+        //     time: Date.now(),
+        //     page: val,
+        //     menu: this.bottomMenu,
+        //     component: this.compList,
+        //   })
+        // );
+        this.updatePageConfig()
       },
       deep: true
     }
   },
   methods: {
+    fetchPageConfig() {
+      pageOne({id: this.$route.params.pageId}).then(res => {
+        if (res.config) {
+          const data = JSON.parse(res.config)
+          this.compList = data.component;
+          this.bottomMenu = data.menu;
+          this.pageConfig = data.page
+          this.resetCompUnchecked();
+        }
+      })
+    },
+    updatePageConfig() {
+      const data = {
+        id: this.$route.params.pageId,
+        config: JSON.stringify({
+          time: Date.now(),
+          menu: this.bottomMenu,
+          page: this.pageConfig,
+          component: this.compList,
+        })
+      }
+      pageUpdate(data).then(res => {
+
+      })
+    },
     showPageSet() {
       this.resetCompUnchecked();
       this.currentIndex = -1;

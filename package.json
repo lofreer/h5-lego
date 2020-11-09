@@ -9,13 +9,16 @@
     "report": "vue-cli-service build --report"
   },
   "dependencies": {
+    "axios": "^0.21.0",
+    "moment": "^2.29.1",
     "core-js": "^3.6.5",
     "element-ui": "^2.14.0",
     "font-awesome": "^4.7.0",
     "iscroll": "^5.2.0",
     "normalize.css": "^8.0.1",
     "swiper": "^4.5.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.4.9"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
