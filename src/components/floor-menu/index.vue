@@ -13,7 +13,7 @@
               :style="getItemStyle(idx)"
               v-for="(item, idx) in items"
               :key="idx"
-              @click="handleGo(item, idx)"
+              @click="handleClick(item, idx)"
               >{{ item.text }}</a
             >
           </div>
@@ -38,7 +38,7 @@
         </div>
         <div class="menu-wrap" v-show="menuShow">
           <div class="wrap-bg" :style="{backgroundColor: backgroundColor}"></div>
-          <div class="menu-item" :style="{color: idx === tabIndex ? fillHoverColor : fillColor}" v-for="(item, idx) in items" :key="idx" @click="handleGo(item, idx)">{{item.text}}</div>
+          <div class="menu-item" :style="{color: idx === tabIndex ? fillHoverColor : fillColor}" v-for="(item, idx) in items" :key="idx" @click="handleClick(item, idx)">{{item.text}}</div>
         </div>
       </div>
     </div>
@@ -142,10 +142,11 @@ export default {
       return ret.join(";");
     },
     // 导航跳转
-    handleGo(config, idx) {
+    handleClick(config, idx) {
+      if (this.$editor) { return }
       this.tabIndex = idx;
       this.menuShow = false;
-      if (config.click && config.click.href) {
+      if (config.click && config.click.href && config.click.type === 'page') {
         const dom = document.querySelector(`[comp-id="${config.click.href}"]`);
         const wrap = document.querySelector(
           `[comp-id="wrap-${this.component.domId}"]`

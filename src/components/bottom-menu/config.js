@@ -26,6 +26,7 @@ module.exports = {
     title: '点击项配置',
     config: [{
       val: '',
+      text: '菜单',
       click: null
     }]
   }

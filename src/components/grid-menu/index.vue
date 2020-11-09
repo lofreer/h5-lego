@@ -10,6 +10,7 @@
         :style="getItemStyle"
         v-for="(item, idx) in items"
         :key="idx"
+        @click="handleClick(item)"
       >
         <img v-if="item.val" :src="item.val" />
         <div v-else class="image-placeholder"><i class="fa fa-image"></i></div>
@@ -56,7 +57,23 @@ export default {
       deep: true,
     },
   },
-  methods: {},
+  methods: {
+    handleClick(item) {
+      if (this.$editor) {return}
+      if (item.click) {
+        const { type, href } = item.click;
+
+        if (type === "outside") {
+          location.href = href;
+        } else if (type === "code") {
+          Function(href)();
+        } else if (type === "tel") {
+        } else if (type === "inside") {
+        } else if (type === "mail") {
+        }
+      }
+    },
+  },
 };
 </script>
 

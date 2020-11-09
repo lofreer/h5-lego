@@ -5,8 +5,12 @@
     :comp-id="component.domId"
   >
     <div class="image-box">
-      <img v-if="imgUrl" :src="imgUrl" />
+      <img v-if="imgUrl" :src="imgUrl" :usemap="`#map-${component.domId}`" />
       <div v-else class="image-placeholder"><i class="fa fa-image"></i></div>
+
+      <map :name="`map-${component.domId}`" v-if="action.click">
+        <area shape="rect" :coords="`${action.x},${action.y},${action.w},${action.h}`" @click="handleClick" />
+      </map>
     </div>
   </div>
 </template>
@@ -22,6 +26,7 @@ export default {
   data() {
     return {
       imgUrl: this.component.style[1].val,
+      action: this.component.action.config[0]
     };
   },
   computed: {
@@ -38,10 +43,28 @@ export default {
     component: {
       handler() {
         this.imgUrl = this.component.style[1].val;
+        this.action = this.component.action.config[0]
       },
       deep: true,
     },
   },
+  methods: {
+    handleClick() {
+      if (this.$editor) {return}
+      if (this.action.click) {
+        const { type, href } = this.action.click;
+
+        if (type === "outside") {
+          location.href = href;
+        } else if (type === "code") {
+          Function(href)();
+        } else if (type === "tel") {
+        } else if (type === "inside") {
+        } else if (type === "mail") {
+        }
+      }
+    }
+  }
 };
 </script>
 

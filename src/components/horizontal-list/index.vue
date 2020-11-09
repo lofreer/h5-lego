@@ -3,7 +3,7 @@
        :style="getStyle"
        :comp-id="component.domId">
     <div class="page-list">
-      <div v-for="(item, idx) in list" class="page-list-item" :key="idx" :style="getItemStyle('horizontal-list-item')">
+      <div v-for="(item, idx) in list" class="page-list-item" :key="idx" :style="getItemStyle('horizontal-list-item')" @click="handleClick(item)">
         <div class="page-list-item__hd" :style="getItemStyle('horizontal-list-logo_')">
           <div class="page-list-item__img" :style="{backgroundImage: 'url(' + item.val + ')'}"></div>
         </div>
@@ -17,49 +17,64 @@
 </template>
 
 <script>
-  export default {
-    name: 'comp-horizontal-list',
-    props: {
-      component: {
-        type: Object
-      }
-    },
-    data() {
-      return {
-        list: this.component.action.config
-      }
-    },
-    computed: {
-      getStyle() {
-        const ret = []
-        this.component.style.forEach((item) => {
-          const unit = item.unit || ''
-          if (item.val) {
-            if (item.attr === 'background-image') {
-              ret.push(item.attr + ':url(' + item.val + ')')
-            } else {
-              ret.push(item.attr + ':' + item.val + unit)
-            }
-          }
-        })
-        return ret.join(';')
-      }
-    },
-    methods: {
-      getItemStyle(key) {
-        const ret = []
-        this.component.others.config.forEach((item) => {
-          const isItem = item.attr.indexOf(key)
-          const idx = item.attr.indexOf('_')
-          if (isItem === 0) {
-            const unit = item.unit || ''
-            item.val && ret.push(item.attr.substring(idx + 1, item.attr.length) + ':' + item.val + unit)
-          }
-        })
-        return ret.join(';')
-      }
+export default {
+  name: 'comp-horizontal-list',
+  props: {
+    component: {
+      type: Object
     }
+  },
+  data() {
+    return {
+      list: this.component.action.config
+    }
+  },
+  computed: {
+    getStyle() {
+      const ret = []
+      this.component.style.forEach((item) => {
+        const unit = item.unit || ''
+        if (item.val) {
+          if (item.attr === 'background-image') {
+            ret.push(item.attr + ':url(' + item.val + ')')
+          } else {
+            ret.push(item.attr + ':' + item.val + unit)
+          }
+        }
+      })
+      return ret.join(';')
+    }
+  },
+  methods: {
+    getItemStyle(key) {
+      const ret = []
+      this.component.others.config.forEach((item) => {
+        const isItem = item.attr.indexOf(key)
+        const idx = item.attr.indexOf('_')
+        if (isItem === 0) {
+          const unit = item.unit || ''
+          item.val && ret.push(item.attr.substring(idx + 1, item.attr.length) + ':' + item.val + unit)
+        }
+      })
+      return ret.join(';')
+    },
+    handleClick(item) {
+      if (this.$editor) {return}
+      if (item.click) {
+        const { type, href } = item.click;
+
+        if (type === "outside") {
+          location.href = href;
+        } else if (type === "code") {
+          Function(href)();
+        } else if (type === "tel") {
+        } else if (type === "inside") {
+        } else if (type === "mail") {
+        }
+      }
+    },
   }
+}
 </script>
 
 <style lang="less" scoped>

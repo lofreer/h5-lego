@@ -46,7 +46,6 @@ export default {
   },
   lineToHump(name) {
     return name.replace(/\_(\w)/g, function (all, letter) {
-      console.log(letter)
       return letter.toUpperCase()
     }).replace(/\-(\w)/g, function (all, letter) {
       return letter.toUpperCase()

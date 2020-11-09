@@ -5,9 +5,11 @@
       :style="{ width: 750 / menus.length + 'px' }"
       v-for="(item, $index) in menus"
       :key="$index"
+      @click="handleClick(item)"
     >
       <img v-if="item.val" :src="item.val" />
       <div v-else class="image-placeholder"><i class="fa fa-adjust"></i></div>
+      <span>{{item.text}}</span>
     </div>
   </div>
 </template>
@@ -45,6 +47,24 @@ export default {
       deep: true,
     },
   },
+  methods: {
+    handleClick(item) {
+      if (this.$editor) { return }
+      if (item.click) {
+        const { type, href } = item.click
+
+        if (type === 'outside') {
+          location.href = href
+        } else if (type === 'tel') {
+
+        } else if (type === 'inside') {
+
+        } else if (type === 'mail') {
+
+        }
+      }
+    }
+  }
 };
 </script>
 
@@ -57,19 +77,26 @@ export default {
   align-content: center;
 
   .menu-item {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     flex: 1;
-    text-align: center;
+    height: 100%;
+    padding: 5px 0;
     box-sizing: border-box;
 
     > img {
-      height: 100%;
-      width: auto;
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+    }
+    > span {
+      font-size: 12px;
+      margin-top: 3px;
     }
 
     > .image-placeholder {
-      width: 100%;
-      height: 100%;
       text-align: center;
       border-left: 1px solid #e8e8e8;
       display: flex;
@@ -82,7 +109,7 @@ export default {
 
       > .fa {
         color: #83c0ff;
-        font-size: 40px;
+        font-size: 22px;
         vertical-align: middle;
       }
     }

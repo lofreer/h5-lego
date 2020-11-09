@@ -10,17 +10,8 @@
       :style="{ width: width, height: height }"
     >
       <div class="swiper-wrapper">
-        <div v-for="(banner, idx) in banners" :key="idx" class="swiper-slide">
-          <a
-            v-if="banner.val"
-            :href="
-              banner.click && banner.click.href
-                ? banner.click.href
-                : 'javascript:;'
-            "
-          >
-            <img :src="banner.val" />
-          </a>
+        <div v-for="(banner, idx) in banners" :key="idx" class="swiper-slide" @click="handleClick(banner)">
+          <img v-if="banner.val" :src="banner.val" />
           <div v-else class="image-placeholder">
             <i class="fa fa-caret-square-o-right"></i>
           </div>
@@ -95,6 +86,24 @@ export default {
         "px"
       );
     },
+    handleClick(item) {
+      if (this.$editor) { return }
+      if (item.click) {
+        const { type, href } = item.click
+
+        if (type === 'outside') {
+          location.href = href
+        } else if (type === 'code') {
+          Function(href)()
+        } else if (type === 'tel') {
+
+        } else if (type === 'inside') {
+
+        } else if (type === 'mail') {
+
+        }
+      }
+    }
   },
   mounted() {
     const autoplay = this.component.base.find((v) => v.attr === "autoplay").val;

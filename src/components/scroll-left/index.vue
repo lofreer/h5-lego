@@ -7,16 +7,8 @@
     <section v-show="component.style[0].val === 'scroll-x'" class="scroll-left">
       <div :id="`scroll-one-${component.domId}`" class="scroll-wrapper">
         <div class="scroll-content">
-          <div class="slide" v-for="(item, idx) in scrolls" :key="idx">
-            <a
-              v-if="item.val"
-              :href="
-                item.click && item.click.href ? item.click.href : 'javascript:;'
-              "
-            >
-              <img :src="item.val" />
-            </a>
-            <!-- <img v-if="item.val" :src="item.val"> -->
+          <div class="slide" v-for="(item, idx) in scrolls" :key="idx" @click="handleClick(item)">
+            <img v-if="item.val" :src="item.val">
             <div v-else class="image-placeholder">
               <i class="fa fa-image"></i>
             </div>
@@ -123,6 +115,24 @@ export default {
         }, 0);
       }
     },
+    handleClick(item) {
+      if (this.$editor) { return }
+      if (item.click) {
+        const { type, href } = item.click
+
+        if (type === 'outside') {
+          location.href = href
+        } else if (type === 'code') {
+          Function(href)()
+        } else if (type === 'tel') {
+
+        } else if (type === 'inside') {
+
+        } else if (type === 'mail') {
+
+        }
+      }
+    }
   },
   mounted() {
     this.initScroll();

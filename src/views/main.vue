@@ -167,8 +167,11 @@ export default {
   mounted() {
     this.$bus.$on("click:show", (idx, tabs) => {
       this.click.index = idx;
-      if (Array.isArray(tabs) && tabs.length) this.click.tabs = tabs;
-      else this.click.tabs = ["outside", "page", "tel"];
+      if (Array.isArray(tabs) && tabs.length) {
+        this.click.tabs = tabs;
+      } else {
+        this.click.tabs = ["outside", "page", "tel"];
+      }
       this.clickShow = true;
     });
     this.$bus.$on("click:submit", (idx, config) => {

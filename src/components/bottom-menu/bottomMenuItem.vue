@@ -7,6 +7,9 @@
                 :item="menu"
                 v-on:uploadSuccess="uploadSuccess">
         </upload>
+        <el-form-item class="small" :label="`菜单${idx+1}：`">
+          <el-input v-model="menu.text" :maxlength="500" placeholder="菜单"></el-input>
+        </el-form-item>
         <template v-if="menu.click">
           <el-form-item class="small" label="跳转到：">
             <span style="word-break: break-all;">{{menu.click.href}}</span>
@@ -73,7 +76,7 @@
         this.menus.splice(idx, 1)
       },
       addItem() {
-        if (this.menus.length < 10) {
+        if (this.menus.length < 5) {
           this.menus.push(util.copyObj(defaultConf.action.config[0]))
         } else {
           this.$alert('最多添加5个导航项！')

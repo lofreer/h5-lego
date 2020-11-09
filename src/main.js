@@ -7,6 +7,8 @@ import 'normalize.css/normalize.css'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$editor = true
+
 Vue.use(ElementUI, {
   size: 'small'
 })

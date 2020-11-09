@@ -27,7 +27,7 @@
       <el-tab-pane
         v-if="showTabs.indexOf('code') > -1"
         label="自定义脚本"
-        name="jsCode"
+        name="code"
       >
         <el-form label-width="100px" style="margin-top: 20px">
           <el-form-item label="自定义脚本：">
@@ -183,7 +183,7 @@ export default {
       outsideVal: this.getVal("outside"),
       pageVal: this.getVal("page"),
       telVal: this.getVal("tel"),
-      codeVal: "",
+      codeVal: this.getVal("codeVal"),
     };
   },
   watch: {
@@ -200,6 +200,7 @@ export default {
         this.outsideVal = this.getVal("outside");
         this.pageVal = this.getVal("page");
         this.telVal = this.getVal("tel");
+        this.codeVal = this.getVal("code");
         this.returnVal = null;
       }
     },
@@ -258,6 +259,12 @@ export default {
         this.returnVal = {
           type: "tel",
           href: this.telVal,
+        };
+      }
+      if (this.currentTab === "code" && this.codeVal) {
+        this.returnVal = {
+          type: "code",
+          href: this.codeVal,
         };
       }
       this.$bus.$emit("click:submit", this.index, this.returnVal);
