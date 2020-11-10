@@ -223,6 +223,7 @@ export default {
     top: 0;
     right: 0;
     z-index: 10;
+    border-radius: 0 !important;
     margin-top: 0;
   }
 
