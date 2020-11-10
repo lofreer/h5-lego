@@ -38,7 +38,7 @@ export default {
       swiper: null,
       banners: this.component.action.config,
       pagination: this.component.base.find((v) => v.attr === "pagination").val,
-      height: this.getMaxHeight(),
+      height: this.getHeight(),
       width: this.getWidth(),
     };
   },
@@ -59,7 +59,7 @@ export default {
         this.pagination = this.component.base.find(
           (v) => v.attr === "pagination"
         ).val;
-        this.height = this.getMaxHeight();
+        this.height = this.getHeight();
         this.width = this.getWidth();
         setTimeout(() => {
           this.swiper.update();
@@ -80,11 +80,17 @@ export default {
       }
       return h > 0 ? h / 2 + "px" : "112px";
     },
+    getHeight() {
+      const height = this.component.style.filter(v => v.attr === 'height')[0].val
+      const offsetWidth = document.body.offsetWidth
+      return (this.$editor ? height : height / 375 * offsetWidth) + 'px'
+    },
     getWidth() {
-      return (
-        (750 - this.component.style[2].val - this.component.style[4].val) / 2 +
-        "px"
-      );
+      return '100%'
+      // return (
+      //   (750 - this.component.style[2].val - this.component.style[4].val) / 2 +
+      //   "px"
+      // );
     },
     handleClick(item) {
       if (this.$editor) { return }
