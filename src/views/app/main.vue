@@ -117,7 +117,7 @@ import { pageList, pageOne, pageCreate, pageUpdate, pageDestroy } from '@/api/pa
 
 // 定时器
 let timer = null
-let interval = 1000
+let interval = 800  // ms
 
 export default {
   name: "AppMain",
