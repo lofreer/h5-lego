@@ -79,32 +79,52 @@ export default {
       }
     },
     fetchData() {
-      // if (this.$editor) {return}
-      if (this.component.data) {
-        const config = {}
-        this.component.data.forEach(v => {
-          config[v.attr] = v.val
-        })
-        const { url, method, headers, params, path, image, title, description } = config
+      if (this.$editor) {return}
+      try {
+        if (this.component.data) {
+          const config = {}
+          this.component.data.forEach(v => {
+            config[v.attr] = v.val
+          })
+          const { url, method, headers, params, path, image, title, description, link } = config
 
-        if (!url || !method || !path || !image || !title || !description) { return }
-        const query = { method, url }
-        if (headers) {
-          query.headers = JSON.parse(headers)
-        }
-        if (params) {
-          query[method.toLowerCase() === 'post' ? 'data' : 'params'] = JSON.parse(params)
-        }
-        axios(query).then(response => {
-          const res = response.data
-          const paths = path.split('.')
-          let data = res
-          for (let [i, key] of paths.entries()) {
-            data = data[key]
+          if (!url || !method || !path || !image || !title || !description) { return }
+          const query = { method, url }
+          if (headers) {
+            query.headers = JSON.parse(headers)
           }
-          if (!data) { return }
-          console.log(data)
-        })
+          if (params) {
+            query[method.toLowerCase() === 'post' ? 'data' : 'params'] = JSON.parse(params)
+          }
+          axios(query).then(response => {
+            const res = response.data
+            const paths = path.split('.')
+            let data = null
+            for (let [i, key] of paths.entries()) {
+              data = data ? data[key] : res[key]
+            }
+            if (!data) { return }
+            const list = []
+            const regex = /{{(.*?)}}/
+            data.forEach(item => {
+              const value = {
+                val: image.replace(regex, item[image.match(regex)[1]]),
+                title: title.replace(regex, item[title.match(regex)[1]]) || '暂无标题',
+                desc: description.replace(regex, item[description.match(regex)[1]]) || '暂无描述',
+              }
+              if (link) {
+                value.click = {
+                  href: link.replace(regex, item[link.match(regex)[1]]) || '',
+                  type: 'outside'
+                }
+              }
+              list.push(value)
+            })
+            this.list = list
+          })
+        }
+      } catch (err) {
+        console.log(err)
       }
     }
   }

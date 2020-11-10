@@ -262,5 +262,13 @@ module.exports = {
       placeholder: '必填：{{description}}',
       isNecessary: true
     },
+    {
+      type: 'text',
+      label: '配置跳转',
+      attr: 'link',
+      val: '',
+      placeholder: '非必填：https://xxx.com/xxx/{{id}}',
+      isNecessary: true
+    },
   ]
 }
