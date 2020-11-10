@@ -5,7 +5,7 @@
   >
     <div :style="getStyle('margin')">
       <div class="floor-menu" :comp-id="component.domId" :style="{backgroundColor: backgroundColor, borderRadius: borderRadius}">
-        <div class="floor-menu-list">
+        <div class="floor-menu-list" :style="{borderRadius: borderRadius}">
           <div class="floor-menu-inner">
             <a
               class="floor-item"
@@ -228,8 +228,9 @@ export default {
   }
 
   .floor-menu-list {
-    width: 335px;
+    flex: 1;
     height: 40px;
+    margin-right: 10px;
     overflow-y: hidden;
     overflow-x: auto;
 
