@@ -134,17 +134,23 @@ export default {
               data = data ? data[key] : res[key]
             }
             if (!data) { return }
+
             const list = []
             const regex = /{{(.*?)}}/
+            const imageKey = image.match(regex) && RegExp.$1
+            const titleKey = title.match(regex) && RegExp.$1
+            const descriptionKey = description.match(regex) && RegExp.$1
+            const linkKey = link ? link.match(regex) && RegExp.$1 : ''
+
             data.forEach(item => {
               const value = {
-                val: image.replace(regex, item[image.match(regex)[1]]),
-                title: title.replace(regex, item[title.match(regex)[1]]) || '暂无标题',
-                desc: description.replace(regex, item[description.match(regex)[1]]) || '暂无描述',
+                val: imageKey ? image.replace(regex, item[imageKey]) : image,
+                title: titleKey ? title.replace(regex, item[titleKey]) : title,
+                desc: descriptionKey ? description.replace(regex, item[descriptionKey]) : description,
               }
               if (link) {
                 value.click = {
-                  href: link.replace(regex, item[link.match(regex)[1]]) || '',
+                  href: linkKey ? link.replace(regex, item[linkKey]) : link,
                   type: 'outside'
                 }
               }
