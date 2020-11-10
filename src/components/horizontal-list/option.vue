@@ -38,6 +38,13 @@
         <horizontal-item :items="option.action.config"></horizontal-item>
       </template>
     </template>
+
+    <template v-if="option.data">
+      <h3><i class="el-icon-setting"></i> 动态数据配置</h3>
+      <template v-for="(item, idx) in option.data">
+        <form-item :item="item" :index="idx" :key="`${idx}-c`"></form-item>
+      </template>
+    </template>
   </el-form>
 </template>
 
