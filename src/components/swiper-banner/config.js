@@ -44,6 +44,16 @@ module.exports = {
       isNecessary: true
     }, {
       type: 'input-number',
+      label: '容器高度',
+      attr: 'height',
+      val: 110,
+      unit: 'px',
+      min: 80,
+      max: 375,
+      step: 1,
+      isNecessary: false
+    }, {
+      type: 'input-number',
       label: '内边距-上',
       attr: 'padding-top',
       val: 0,
