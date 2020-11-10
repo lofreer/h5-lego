@@ -115,6 +115,10 @@ import pageOption from "@/config/page.config.js";
 import libs from "@/components"
 import { pageList, pageOne, pageCreate, pageUpdate, pageDestroy } from '@/api/page'
 
+// 定时器
+let timer = null
+let interval = 1000
+
 export default {
   name: "AppMain",
   components: {
@@ -194,46 +198,46 @@ export default {
   watch: {
     compList: {
       handler(val) {
-        // if (val && val.length > 1) {
-        //   localStorage.setItem(
-        //     "pageDateSet",
-        //     JSON.stringify({
-        //       time: Date.now(),
-        //       menu: this.bottomMenu,
-        //       page: this.pageConfig,
-        //       component: val,
-        //     })
-        //   );
-        // }
+        if (val && val.length > 1) {
+          localStorage.setItem(
+            "pageDateSet",
+            JSON.stringify({
+              time: Date.now(),
+              menu: this.bottomMenu,
+              page: this.pageConfig,
+              component: val,
+            })
+          );
+        }
         this.updatePageConfig()
       },
       deep: true,
     },
     bottomMenu: {
       handler(val) {
-        // localStorage.setItem(
-        //   "pageDateSet",
-        //   JSON.stringify({
-        //     time: Date.now(),
-        //     menu: val,
-        //     page: this.pageConfig,
-        //     component: this.compList,
-        //   })
-        // );
+        localStorage.setItem(
+          "pageDateSet",
+          JSON.stringify({
+            time: Date.now(),
+            menu: val,
+            page: this.pageConfig,
+            component: this.compList,
+          })
+        );
         this.updatePageConfig()
       },
     },
     pageConfig: {
       handler(val) {
-        // localStorage.setItem(
-        //   "pageDateSet",
-        //   JSON.stringify({
-        //     time: Date.now(),
-        //     page: val,
-        //     menu: this.bottomMenu,
-        //     component: this.compList,
-        //   })
-        // );
+        localStorage.setItem(
+          "pageDateSet",
+          JSON.stringify({
+            time: Date.now(),
+            page: val,
+            menu: this.bottomMenu,
+            component: this.compList,
+          })
+        );
         this.updatePageConfig()
       },
       deep: true
@@ -252,18 +256,25 @@ export default {
       })
     },
     updatePageConfig() {
+      const config = JSON.stringify({
+        time: Date.now(),
+        menu: this.bottomMenu,
+        page: this.pageConfig,
+        component: this.compList,
+      })
+      localStorage.setItem(
+        "pageDateSet",
+        config
+      );
       const data = {
         id: this.$route.params.pageId,
-        config: JSON.stringify({
-          time: Date.now(),
-          menu: this.bottomMenu,
-          page: this.pageConfig,
-          component: this.compList,
-        })
+        config: config
       }
-      pageUpdate(data).then(res => {
-
-      })
+      // 限流
+      window.clearTimeout(timer)
+      timer = setTimeout(() => {
+        pageUpdate(data).then(res => {})
+      }, interval)
     },
     showPageSet() {
       this.resetCompUnchecked();
