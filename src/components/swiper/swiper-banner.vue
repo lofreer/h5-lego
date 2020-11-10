@@ -47,7 +47,9 @@ export default {
       const ret = [];
       this.component.style.forEach((item) => {
         const unit = item.unit || "";
-        item.val && ret.push(item.attr + ":" + item.val + unit);
+        if (item.attr !== 'height') {
+          item.val && ret.push(item.attr + ":" + item.val + unit);
+        }
       });
       return ret.join(";");
     },
@@ -135,11 +137,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    a {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
+
     img {
       width: 100%;
       height: 100%;
