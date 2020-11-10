@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'comp-horizontal-list',
   props: {
@@ -44,6 +46,9 @@ export default {
       })
       return ret.join(';')
     }
+  },
+  created() {
+    this.fetchData()
   },
   methods: {
     getItemStyle(key) {
@@ -73,6 +78,35 @@ export default {
         }
       }
     },
+    fetchData() {
+      // if (this.$editor) {return}
+      if (this.component.data) {
+        const config = {}
+        this.component.data.forEach(v => {
+          config[v.attr] = v.val
+        })
+        const { url, method, headers, params, path, image, title, description } = config
+
+        if (!url || !method || !path || !image || !title || !description) { return }
+        const query = { method, url }
+        if (headers) {
+          query.headers = JSON.parse(headers)
+        }
+        if (params) {
+          query[method.toLowerCase() === 'post' ? 'data' : 'params'] = JSON.parse(params)
+        }
+        axios(query).then(response => {
+          const res = response.data
+          const paths = path.split('.')
+          let data = res
+          for (let [i, key] of paths.entries()) {
+            data = data[key]
+          }
+          if (!data) { return }
+          console.log(data)
+        })
+      }
+    }
   }
 }
 </script>

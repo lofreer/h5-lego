@@ -179,5 +179,81 @@ module.exports = {
       desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
       click: null
     }]
-  }
+  },
+  data: [
+    {
+      type: 'text',
+      label: '请求地址',
+      attr: 'url',
+      val: '',
+      placeholder: 'API请求地址：https://api.xxx.com/xxx',
+      isNecessary: true
+    }, {
+      type: 'radio',
+      label: '提交方式',
+      attr: 'method',
+      val: 'GET',
+      options: [{
+        name: 'GET',
+        val: 'GET'
+      }, {
+        name: 'POST',
+        val: 'POST'
+      }],
+      isNecessary: true
+    }, {
+      type: 'text',
+      label: 'params',
+      attr: 'params',
+      val: '',
+      placeholder: '非必填：{"key1":"val1","key2":"val2"}',
+      isNecessary: true
+    }, {
+      type: 'text',
+      label: 'headers',
+      attr: 'headers',
+      val: '',
+      placeholder: '非必填：{"key1":"val1","key2":"val2"}',
+      isNecessary: true
+    }, {
+      type: 'text',
+      label: '数据路径',
+      attr: 'path',
+      val: '',
+      placeholder: '必填：data.list',
+      isNecessary: true
+    },
+    {
+      type: 'text',
+      label: '图片模板',
+      attr: 'image',
+      val: '',
+      placeholder: '必填：https://baidu.com/image/{{image}}}',
+      isNecessary: true
+    },
+    {
+      type: 'text',
+      label: '标题模板',
+      attr: 'title',
+      val: '',
+      placeholder: '必填：{{title}}',
+      isNecessary: true
+    },
+    {
+      type: 'text',
+      label: '描述模板',
+      attr: 'description',
+      val: '',
+      placeholder: '必填：{{description}}',
+      isNecessary: true
+    },
+    {
+      type: 'text',
+      label: '配置跳转',
+      attr: 'link',
+      val: '',
+      placeholder: '非必填：https://xxx.com/xxx/{{id}}',
+      isNecessary: true
+    },
+  ]
 }
