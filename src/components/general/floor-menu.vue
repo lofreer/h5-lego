@@ -225,6 +225,10 @@ export default {
     z-index: 10;
     border-radius: 0 !important;
     margin-top: 0;
+
+    .menu-wrap {
+      border-radius: 0 !important;
+    }
   }
 
   .floor-menu-list {
