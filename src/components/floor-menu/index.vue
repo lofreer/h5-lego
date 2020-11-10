@@ -36,7 +36,7 @@
             </g>
           </svg>
         </div>
-        <div class="menu-wrap" v-show="menuShow">
+        <div class="menu-wrap" v-show="menuShow" :style="{borderRadius: borderRadius}">
           <div class="wrap-bg" :style="{backgroundColor: backgroundColor}"></div>
           <div class="menu-item" :style="{color: idx === tabIndex ? fillHoverColor : fillColor}" v-for="(item, idx) in items" :key="idx" @click="handleClick(item, idx)">{{item.text}}</div>
         </div>
@@ -271,6 +271,7 @@ export default {
     flex-wrap: wrap;
     color: #fff;
     padding: 0 10px;
+    overflow: hidden;
 
     .menu-item {
       width: 25%;
