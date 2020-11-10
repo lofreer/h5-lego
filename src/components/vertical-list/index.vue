@@ -119,6 +119,7 @@ export default {
     display: inline-block;
     text-align: center;
     width: 50%;
+    vertical-align: top;
     box-sizing: border-box;
 
     &:after {
