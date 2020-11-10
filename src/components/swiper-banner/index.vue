@@ -128,6 +128,7 @@ export default {
 <style lang="less" scoped>
 .comp-content {
   overflow: hidden;
+  transform: rotate(0deg);
 }
 .swiper-container {
   width: 100%;
