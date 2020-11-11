@@ -18,30 +18,30 @@
 </template>
 
 <script>
-  export default {
-    name: 'comp-page-paragraph',
-    props: {
-      component: {
-        type: Object
-      }
-    },
-    computed: {
-      getStyle() {
-        const ret = []
-        this.component.style.forEach((item) => {
-          const unit = item.unit || ''
-          if (item.val) {
-            if (item.attr === 'background-image') {
-              ret.push(item.attr + ':url(' + item.val + ')')
-            } else {
-              ret.push(item.attr + ':' + item.val + unit)
-            }
+export default {
+  name: 'comp-page-paragraph',
+  props: {
+    component: {
+      type: Object,
+    }
+  },
+  computed: {
+    getStyle() {
+      const ret = []
+      this.component.style.forEach((item) => {
+        const unit = item.unit || ''
+        if (item.val) {
+          if (item.attr === 'background-image') {
+            ret.push(item.attr + ':url(' + item.val + ')')
+          } else {
+            ret.push(item.attr + ':' + item.val + unit)
           }
-        })
-        return ret.join(';')
-      }
+        }
+      })
+      return ret.join(';')
     }
   }
+}
 </script>
 
 <style lang="less" scoped>
