@@ -38,7 +38,7 @@ module.exports = [
       },
     ]
   }, {
-    title: '样式模块',
+    title: '样式组件',
     collapse: true,
     items: [
       {

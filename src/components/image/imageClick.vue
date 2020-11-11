@@ -49,95 +49,96 @@
 </template>
 
 <script>
-  import dragArea from '@/utils/dragarea.js'
-  export default {
-    props: {
-      show: {
-        type: Boolean,
-        default: false
-      },
-      clicks: {
-        type: Array
-      },
-      img: {
-        type: String
-      }
+import dragArea from '@/utils/dragarea.js'
+
+export default {
+  props: {
+    show: {
+      type: Boolean,
+      default: false
     },
-    data() {
-      return {
-        areas: this.clicks,
-        current: 0,
-        dialogShow: this.show
-      }
+    clicks: {
+      type: Array
     },
-    watch: {
-      clicks(list) {
-        this.areas = list
-      },
-      show(isShow) {
-        this.dialogShow = isShow
-        this.current = 0
-        if (isShow) {
-          this.$nextTick(() => {
-            dragArea.init({
-              container: 'areaMap',
-              cropBox: 'cropBox-0',
-              initareas: this.areas,
-              newcallback: (area) => {
-                this.areas.push({
-                  index: parseInt(area.dataset.index),
-                  x: parseInt(area.style.left),
-                  y: parseInt(area.style.top),
-                  w: parseInt(area.style.width),
-                  h: parseInt(area.style.height),
-                  click: ''
-                })
-                this.current = parseInt(area.dataset.index)
-              },
-              clickcallback: (area) => {
-                this.current = parseInt(area.dataset.index)
-              },
-              dragpointcallback: (area) => {
-                const idx = parseInt(area.dataset.index)
-                this.current = idx
-                const item = this.areas.find((item) => item.index === idx)
-                item.x = parseInt(area.style.left)
-                item.y = parseInt(area.style.top)
-                item.w = parseInt(area.style.width)
-                item.h = parseInt(area.style.height)
-              },
-              dragareacallback: (area) => {
-                const idx = parseInt(area.dataset.index)
-                this.current = idx
-                const item = this.areas.find((item) => item.index === idx)
-                item.x = parseInt(area.style.left)
-                item.y = parseInt(area.style.top)
-                item.w = parseInt(area.style.width)
-                item.h = parseInt(area.style.height)
-              }
-            })
+    img: {
+      type: String
+    }
+  },
+  data() {
+    return {
+      areas: this.clicks,
+      current: 0,
+      dialogShow: this.show
+    }
+  },
+  watch: {
+    clicks(list) {
+      this.areas = list
+    },
+    show(isShow) {
+      this.dialogShow = isShow
+      this.current = 0
+      if (isShow) {
+        this.$nextTick(() => {
+          dragArea.init({
+            container: 'areaMap',
+            cropBox: 'cropBox-0',
+            initareas: this.areas,
+            newcallback: (area) => {
+              this.areas.push({
+                index: parseInt(area.dataset.index),
+                x: parseInt(area.style.left),
+                y: parseInt(area.style.top),
+                w: parseInt(area.style.width),
+                h: parseInt(area.style.height),
+                click: ''
+              })
+              this.current = parseInt(area.dataset.index)
+            },
+            clickcallback: (area) => {
+              this.current = parseInt(area.dataset.index)
+            },
+            dragpointcallback: (area) => {
+              const idx = parseInt(area.dataset.index)
+              this.current = idx
+              const item = this.areas.find((item) => item.index === idx)
+              item.x = parseInt(area.style.left)
+              item.y = parseInt(area.style.top)
+              item.w = parseInt(area.style.width)
+              item.h = parseInt(area.style.height)
+            },
+            dragareacallback: (area) => {
+              const idx = parseInt(area.dataset.index)
+              this.current = idx
+              const item = this.areas.find((item) => item.index === idx)
+              item.x = parseInt(area.style.left)
+              item.y = parseInt(area.style.top)
+              item.w = parseInt(area.style.width)
+              item.h = parseInt(area.style.height)
+            }
           })
-        }
-      }
-    },
-    methods: {
-      delArea(area, idx) {
-        const n = this.areas.findIndex((item) => item.index === idx)
-        this.areas.splice(n, 1)
-        const box = document.getElementById('cropBox-' + idx)
-        box && box.remove()
-        // 重置样式
-        document.querySelectorAll('div.crop-box').forEach((val) => {
-          val.classList.remove('active')
         })
-        this.current = 0
-        document.getElementById('cropBox-0').classList.add('active')
-      },
-      showClick(area, idx) {
-        this.$bus.$emit('click:show', idx)
       }
     }
+  },
+  methods: {
+    delArea(area, idx) {
+      const n = this.areas.findIndex((item) => item.index === idx)
+      this.areas.splice(n, 1)
+      const box = document.getElementById('cropBox-' + idx)
+      box && box.remove()
+      // 重置样式
+      document.querySelectorAll('div.crop-box').forEach((val) => {
+        val.classList.remove('active')
+      })
+      this.current = 0
+      document.getElementById('cropBox-0').classList.add('active')
+    },
+    showClick(area, idx) {
+      this.$bus.$emit('click:show', idx)
+    }
   }
+}
 </script>
 
 <style lang="less">

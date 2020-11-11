@@ -26,42 +26,43 @@
 </template>
 
 <script>
-  import util from '@/utils/util.js'
-  import defaultConf from './config.js'
-  export default {
-    data() {
-      return {
-        items: this.paragraphs,
-      }
+import util from '@/utils/util.js'
+import defaultConf from './config.js'
+
+export default {
+  data() {
+    return {
+      items: this.paragraphs,
+    }
+  },
+  props: {
+    paragraphs: {
+      type: Array
+    }
+  },
+  methods: {
+    upInput(idx) {
+      const tmp = util.copyObj(this.items[idx])
+      this.items.splice(idx, 1)
+      this.items.splice(idx - 1, 0, tmp)
     },
-    props: {
-      paragraphs: {
-        type: Array
-      }
+    downInput(idx) {
+      const tmp = util.copyObj(this.items[idx])
+      this.items.splice(idx, 1)
+      this.items.splice(idx + 1, 0, tmp)
     },
-    methods: {
-      upInput(idx) {
-        const tmp = util.copyObj(this.items[idx])
-        this.items.splice(idx, 1)
-        this.items.splice(idx - 1, 0, tmp)
-      },
-      downInput(idx) {
-        const tmp = util.copyObj(this.items[idx])
-        this.items.splice(idx, 1)
-        this.items.splice(idx + 1, 0, tmp)
-      },
-      delInput(idx) {
-        this.items.splice(idx, 1)
-      },
-      addInput() {
-        if (this.items.length <= 20) {
-          this.items.push(util.copyObj(defaultConf.action.config[0]))
-        } else {
-          this.$alert('最多添加20个段落项！')
-        }
+    delInput(idx) {
+      this.items.splice(idx, 1)
+    },
+    addInput() {
+      if (this.items.length <= 20) {
+        this.items.push(util.copyObj(defaultConf.action.config[0]))
+      } else {
+        this.$alert('最多添加20个段落项！')
       }
     }
   }
+}
 </script>
 
 <style lang="less">

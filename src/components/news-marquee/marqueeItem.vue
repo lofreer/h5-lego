@@ -28,53 +28,54 @@
 </template>
 
 <script>
-  import util from '@/utils/util.js'
-  import defaultConf from './config.js'
-  export default {
-    data() {
-      return {
-        items: this.marquees
-      }
+import util from '@/utils/util.js'
+import defaultConf from './config.js'
+
+export default {
+  data() {
+    return {
+      items: this.marquees
+    }
+  },
+  props: {
+    marquees: {
+      type: Array
+    }
+  },
+  watch: {
+    marquees: {
+      handler(val) {
+        this.items = val
+      },
+      deep: true
+    }
+  },
+  methods: {
+    showClick(banner, idx) {
+      this.$bus.$emit('click:show', idx)
     },
-    props: {
-      marquees: {
-        type: Array
-      }
+    upItem(idx) {
+      const tmp = util.copyObj(this.items[idx])
+      this.items.splice(idx, 1)
+      this.items.splice(idx - 1, 0, tmp)
     },
-    watch: {
-      marquees: {
-        handler(val) {
-          this.items = val
-        },
-        deep: true
-      }
+    downItem(idx) {
+      const tmp = util.copyObj(this.items[idx])
+      this.items.splice(idx, 1)
+      this.items.splice(idx + 1, 0, tmp)
     },
-    methods: {
-      showClick(banner, idx) {
-        this.$bus.$emit('click:show', idx)
-      },
-      upItem(idx) {
-        const tmp = util.copyObj(this.items[idx])
-        this.items.splice(idx, 1)
-        this.items.splice(idx - 1, 0, tmp)
-      },
-      downItem(idx) {
-        const tmp = util.copyObj(this.items[idx])
-        this.items.splice(idx, 1)
-        this.items.splice(idx + 1, 0, tmp)
-      },
-      delItem(idx) {
-        this.items.splice(idx, 1)
-      },
-      addItem() {
-        if (this.items.length < 10) {
-          this.items.push(util.copyObj(defaultConf.action.config[0]))
-        } else {
-          this.$alert('最多添加10个滚动项！')
-        }
+    delItem(idx) {
+      this.items.splice(idx, 1)
+    },
+    addItem() {
+      if (this.items.length < 10) {
+        this.items.push(util.copyObj(defaultConf.action.config[0]))
+      } else {
+        this.$alert('最多添加10个滚动项！')
       }
     }
   }
+}
 </script>
 
 <style lang="less">

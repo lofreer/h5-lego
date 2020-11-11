@@ -10,62 +10,62 @@
 </template>
 
 <script>
-  export default {
-    name: 'comp-page-title',
-    props: {
-      component: {
-        type: Object
-      }
+export default {
+  name: 'comp-page-title',
+  props: {
+    component: {
+      type: Object,
+    }
+  },
+  computed: {
+    getStyle() {
+      const ret = []
+      this.component.style.forEach((item) => {
+        const unit = item.unit || ''
+        if (item.val) {
+          if (item.attr === 'background-image') {
+            ret.push(item.attr + ':url(' + item.val + ')')
+          } else {
+            ret.push(item.attr + ':' + item.val + unit)
+          }
+        }
+      })
+      return ret.join(';')
     },
-    computed: {
-      getStyle() {
-        const ret = []
-        this.component.style.forEach((item) => {
-          const unit = item.unit || ''
-          if (item.val) {
-            if (item.attr === 'background-image') {
-              ret.push(item.attr + ':url(' + item.val + ')')
-            } else {
-              ret.push(item.attr + ':' + item.val + unit)
-            }
+    getH3Style() {
+      const ret = []
+      this.component.others.config.forEach((item, idx) => {
+        const unit = item.unit || ''
+        if (item.val && idx < 4) {
+          if (Array.isArray(item.attr)) {
+            item.attr.forEach((atr, i) => {
+              ret.push(atr + ':' + item.val[i])
+            })
+          } else {
+            ret.push(item.attr + ':' + item.val + unit)
           }
-        })
-        return ret.join(';')
-      },
-      getH3Style() {
-        const ret = []
-        this.component.others.config.forEach((item, idx) => {
-          const unit = item.unit || ''
-          if (item.val && idx < 4) {
-            if (Array.isArray(item.attr)) {
-              item.attr.forEach((atr, i) => {
-                ret.push(atr + ':' + item.val[i])
-              })
-            } else {
-              ret.push(item.attr + ':' + item.val + unit)
-            }
+        }
+      })
+      return ret.join(';')
+    },
+    getPStyle() {
+      const ret = []
+      this.component.others.config.forEach((item, idx) => {
+        const unit = item.unit || ''
+        if (item.val && idx > 3) {
+          if (Array.isArray(item.attr)) {
+            item.attr.forEach((atr, i) => {
+              ret.push(atr + ':' + item.val[i])
+            })
+          } else {
+            ret.push(item.attr + ':' + item.val + unit)
           }
-        })
-        return ret.join(';')
-      },
-      getPStyle() {
-        const ret = []
-        this.component.others.config.forEach((item, idx) => {
-          const unit = item.unit || ''
-          if (item.val && idx > 3) {
-            if (Array.isArray(item.attr)) {
-              item.attr.forEach((atr, i) => {
-                ret.push(atr + ':' + item.val[i])
-              })
-            } else {
-              ret.push(item.attr + ':' + item.val + unit)
-            }
-          }
-        })
-        return ret.join(';')
-      }
+        }
+      })
+      return ret.join(';')
     }
   }
+}
 </script>
 
 <style lang="less" scoped>

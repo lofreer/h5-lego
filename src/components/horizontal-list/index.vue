@@ -23,7 +23,7 @@ export default {
   name: 'comp-horizontal-list',
   props: {
     component: {
-      type: Object
+      type: Object,
     }
   },
   data() {

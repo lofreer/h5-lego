@@ -35,48 +35,49 @@
 </template>
 
 <script>
-  import util from '@/utils/util.js'
-  import defaultConf from './config.js'
-  export default {
-    components: {
-      upload: () => import("@/common/upload.vue"),
+import util from '@/utils/util.js'
+import defaultConf from './config.js'
+
+export default {
+  components: {
+    upload: () => import("@/common/upload.vue"),
+  },
+  data() {
+    return {
+      list: this.items,
+    }
+  },
+  props: {
+    items: {
+      type: Array
+    }
+  },
+  methods: {
+    showClick(banner, idx) {
+      this.$bus.$emit('click:show', idx, ['outside'])
     },
-    data() {
-      return {
-        list: this.items,
-      }
+    upItem(idx) {
+      const tmp = util.copyObj(this.list[idx])
+      this.list.splice(idx, 1)
+      this.list.splice(idx - 1, 0, tmp)
     },
-    props: {
-      items: {
-        type: Array
-      }
+    downItem(idx) {
+      const tmp = util.copyObj(this.list[idx])
+      this.list.splice(idx, 1)
+      this.list.splice(idx + 1, 0, tmp)
     },
-    methods: {
-      showClick(banner, idx) {
-        this.$bus.$emit('click:show', idx, ['outside'])
-      },
-      upItem(idx) {
-        const tmp = util.copyObj(this.list[idx])
-        this.list.splice(idx, 1)
-        this.list.splice(idx - 1, 0, tmp)
-      },
-      downItem(idx) {
-        const tmp = util.copyObj(this.list[idx])
-        this.list.splice(idx, 1)
-        this.list.splice(idx + 1, 0, tmp)
-      },
-      delItem(idx) {
-        this.list.splice(idx, 1)
-      },
-      addItem() {
-        if (this.list.length < 20) {
-          this.list.push(util.copyObj(defaultConf.action.config[0]))
-        } else {
-          this.$alert('最多添加20个列表项！')
-        }
+    delItem(idx) {
+      this.list.splice(idx, 1)
+    },
+    addItem() {
+      if (this.list.length < 20) {
+        this.list.push(util.copyObj(defaultConf.action.config[0]))
+      } else {
+        this.$alert('最多添加20个列表项！')
       }
     }
   }
+}
 </script>
 
 <style lang="less">

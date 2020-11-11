@@ -15,7 +15,7 @@ export default {
   name: 'comp-news-marquee',
   props: {
     component: {
-      type: Object
+      type: Object,
     }
   },
   data() {

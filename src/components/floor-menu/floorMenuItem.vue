@@ -28,53 +28,54 @@
 </template>
 
 <script>
-  import util from '@/utils/util.js'
-  import defaultConf from './config.js'
-  export default {
-    data() {
-      return {
-        items: this.menus
-      }
+import util from '@/utils/util.js'
+import defaultConf from './config.js'
+
+export default {
+  data() {
+    return {
+      items: this.menus
+    }
+  },
+  props: {
+    menus: {
+      type: Array
+    }
+  },
+  watch: {
+    menus: {
+      handler(val) {
+        this.items = val
+      },
+      deep: true
+    }
+  },
+  methods: {
+    showClick(banner, idx) {
+      this.$bus.$emit('click:show', idx, ['page'])
     },
-    props: {
-      menus: {
-        type: Array
-      }
+    upItem(idx) {
+      const tmp = util.copyObj(this.items[idx])
+      this.items.splice(idx, 1)
+      this.items.splice(idx - 1, 0, tmp)
     },
-    watch: {
-      menus: {
-        handler(val) {
-          this.items = val
-        },
-        deep: true
-      }
+    downItem(idx) {
+      const tmp = util.copyObj(this.items[idx])
+      this.items.splice(idx, 1)
+      this.items.splice(idx + 1, 0, tmp)
     },
-    methods: {
-      showClick(banner, idx) {
-        this.$bus.$emit('click:show', idx, ['page'])
-      },
-      upItem(idx) {
-        const tmp = util.copyObj(this.items[idx])
-        this.items.splice(idx, 1)
-        this.items.splice(idx - 1, 0, tmp)
-      },
-      downItem(idx) {
-        const tmp = util.copyObj(this.items[idx])
-        this.items.splice(idx, 1)
-        this.items.splice(idx + 1, 0, tmp)
-      },
-      delItem(idx) {
-        this.items.splice(idx, 1)
-      },
-      addItem() {
-        if (this.items.length < 18) {
-          this.items.push(util.copyObj(defaultConf.action.config[0]))
-        } else {
-          this.$alert('最多添加18个导航项！')
-        }
+    delItem(idx) {
+      this.items.splice(idx, 1)
+    },
+    addItem() {
+      if (this.items.length < 18) {
+        this.items.push(util.copyObj(defaultConf.action.config[0]))
+      } else {
+        this.$alert('最多添加18个导航项！')
       }
     }
   }
+}
 </script>
 
 <style lang="less">

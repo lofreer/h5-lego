@@ -39,63 +39,64 @@
 </template>
 
 <script>
-  import util from '@/utils/util.js'
-  import defaultConf from './config.js'
-  export default {
-    data() {
-      return {
-        inputs: this.forms,
-        inputTypes: [
-          {
-            name: '文本',
-            val: 'text'
-          }, {
-            name: '数字',
-            val: 'number'
-          }, {
-            name: '日期选择',
-            val: 'date'
-          }, {
-            name: '下拉选择',
-            val: 'select'
-          }, {
-            name: 'radio单选',
-            val: 'radio'
-          }, {
-            name: 'checkbox多选',
-            val: 'checkbox'
-          }
-        ]
-      }
-    },
-    props: {
-      forms: {
-        type: Array
-      }
-    },
-    methods: {
-      upInput(idx) {
-        const tmp = util.copyObj(this.inputs[idx])
-        this.inputs.splice(idx, 1)
-        this.inputs.splice(idx - 1, 0, tmp)
-      },
-      downInput(idx) {
-        const tmp = util.copyObj(this.inputs[idx])
-        this.inputs.splice(idx, 1)
-        this.inputs.splice(idx + 1, 0, tmp)
-      },
-      delInput(idx) {
-        this.inputs.splice(idx, 1)
-      },
-      addInput() {
-        if (this.inputs.length < 10) {
-          this.inputs.push(util.copyObj(defaultConf.action.config[0]))
-        } else {
-          this.$alert('最多添加10个表单项！')
+import util from '@/utils/util.js'
+import defaultConf from './config.js'
+
+export default {
+  data() {
+    return {
+      inputs: this.forms,
+      inputTypes: [
+        {
+          name: '文本',
+          val: 'text'
+        }, {
+          name: '数字',
+          val: 'number'
+        }, {
+          name: '日期选择',
+          val: 'date'
+        }, {
+          name: '下拉选择',
+          val: 'select'
+        }, {
+          name: 'radio单选',
+          val: 'radio'
+        }, {
+          name: 'checkbox多选',
+          val: 'checkbox'
         }
+      ]
+    }
+  },
+  props: {
+    forms: {
+      type: Array
+    }
+  },
+  methods: {
+    upInput(idx) {
+      const tmp = util.copyObj(this.inputs[idx])
+      this.inputs.splice(idx, 1)
+      this.inputs.splice(idx - 1, 0, tmp)
+    },
+    downInput(idx) {
+      const tmp = util.copyObj(this.inputs[idx])
+      this.inputs.splice(idx, 1)
+      this.inputs.splice(idx + 1, 0, tmp)
+    },
+    delInput(idx) {
+      this.inputs.splice(idx, 1)
+    },
+    addInput() {
+      if (this.inputs.length < 10) {
+        this.inputs.push(util.copyObj(defaultConf.action.config[0]))
+      } else {
+        this.$alert('最多添加10个表单项！')
       }
     }
   }
+}
 </script>
 
 <style lang="less">

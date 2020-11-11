@@ -42,7 +42,7 @@ export default {
       }
       return this.component.base[0].val;
     },
-  },
+  }
 };
 </script>
 

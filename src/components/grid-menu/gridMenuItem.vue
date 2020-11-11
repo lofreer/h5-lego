@@ -32,57 +32,57 @@
 </template>
 
 <script>
-  import util from '@/utils/util.js'
-  import defaultConf from './config.js'
+import util from '@/utils/util.js'
+import defaultConf from './config.js'
 
-  export default {
-    data() {
-      return {
-        items: this.grids
-      }
-    },
-    components: {
-      upload: () => import("@/common/upload.vue"),
-    },
-    props: {
-      grids: {
-        type: Array
-      }
-    },
-    watch: {
-      grids: {
-        handler(val) {
-          this.items = val
-        },
-        deep: true
-      }
-    },
-    methods: {
-      showClick(banner, idx) {
-        this.$bus.$emit('click:show', idx, ['outside'])
+export default {
+  data() {
+    return {
+      items: this.grids
+    }
+  },
+  components: {
+    upload: () => import("@/common/upload.vue"),
+  },
+  props: {
+    grids: {
+      type: Array
+    }
+  },
+  watch: {
+    grids: {
+      handler(val) {
+        this.items = val
       },
-      upItem(idx) {
-        const tmp = util.copyObj(this.items[idx])
-        this.items.splice(idx, 1)
-        this.items.splice(idx - 1, 0, tmp)
-      },
-      downItem(idx) {
-        const tmp = util.copyObj(this.items[idx])
-        this.items.splice(idx, 1)
-        this.items.splice(idx + 1, 0, tmp)
-      },
-      delItem(idx) {
-        this.items.splice(idx, 1)
-      },
-      addItem() {
-        if (this.items.length < 10) {
-          this.items.push(util.copyObj(defaultConf.action.config[0]))
-        } else {
-          this.$alert('最多添加10个点击项！')
-        }
+      deep: true
+    }
+  },
+  methods: {
+    showClick(banner, idx) {
+      this.$bus.$emit('click:show', idx, ['outside'])
+    },
+    upItem(idx) {
+      const tmp = util.copyObj(this.items[idx])
+      this.items.splice(idx, 1)
+      this.items.splice(idx - 1, 0, tmp)
+    },
+    downItem(idx) {
+      const tmp = util.copyObj(this.items[idx])
+      this.items.splice(idx, 1)
+      this.items.splice(idx + 1, 0, tmp)
+    },
+    delItem(idx) {
+      this.items.splice(idx, 1)
+    },
+    addItem() {
+      if (this.items.length < 10) {
+        this.items.push(util.copyObj(defaultConf.action.config[0]))
+      } else {
+        this.$alert('最多添加10个点击项！')
       }
     }
   }
+}
 </script>
 
 <style lang="less">

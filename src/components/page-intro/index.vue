@@ -19,39 +19,39 @@
 </template>
 
 <script>
-  export default {
-    name: 'comp-page-intro',
-    props: {
-      component: {
-        type: Object
-      }
-    },
-    computed: {
-      getStyle() {
-        const ret = []
-        this.component.style.forEach((item) => {
-          const unit = item.unit || ''
-          if (item.val) {
-            if (Array.isArray(item.attr)) {
-              item.attr.forEach((atr, i) => {
-                ret.push(atr + ':' + item.val[i])
-              })
-            } else {
-              ret.push(item.attr + ':' + item.val + unit)
-            }
+export default {
+  name: 'comp-page-intro',
+  props: {
+    component: {
+      type: Object,
+    }
+  },
+  computed: {
+    getStyle() {
+      const ret = []
+      this.component.style.forEach((item) => {
+        const unit = item.unit || ''
+        if (item.val) {
+          if (Array.isArray(item.attr)) {
+            item.attr.forEach((atr, i) => {
+              ret.push(atr + ':' + item.val[i])
+            })
+          } else {
+            ret.push(item.attr + ':' + item.val + unit)
           }
-        })
-        return ret.join(';')
-      },
-      getText() {
-        const arr = this.component.base[0].val.split('\n')
-        if (arr.length) {
-          return arr.join('<br/>')
         }
-        return this.component.base[0].val
+      })
+      return ret.join(';')
+    },
+    getText() {
+      const arr = this.component.base[0].val.split('\n')
+      if (arr.length) {
+        return arr.join('<br/>')
       }
+      return this.component.base[0].val
     }
   }
+}
 </script>
 
 <style lang="less" scoped>
