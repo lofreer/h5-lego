@@ -8,8 +8,8 @@
       <img v-if="imgUrl" :src="imgUrl" :usemap="`#map-${component.domId}`" />
       <div v-else class="image-placeholder"><i class="fa fa-image"></i></div>
 
-      <map :name="`map-${component.domId}`" v-if="action.click">
-        <area shape="rect" :coords="`${action.x},${action.y},${action.w},${action.h}`" @click="handleClick" />
+      <map :name="`map-${component.domId}`" v-if="component.action.config.length">
+        <area shape="rect" v-for="(item, idx) in component.action.config" :key="idx" :coords="`${item.x},${item.y},${item.x+item.w},${item.x+item.h}`" @click="handleClick(item)" />
       </map>
     </div>
   </div>
@@ -42,17 +42,16 @@ export default {
   watch: {
     component: {
       handler() {
-        this.imgUrl = this.component.style[1].val;
-        this.action = this.component.action.config[0]
+        this.imgUrl = this.component.style[1].val
       },
       deep: true,
     },
   },
   methods: {
-    handleClick() {
+    handleClick(item) {
       if (this.$editor) {return}
-      if (this.action.click) {
-        const { type, href } = this.action.click;
+      if (item.click) {
+        const { type, href } = item.click;
 
         if (type === "outside") {
           location.href = href;
