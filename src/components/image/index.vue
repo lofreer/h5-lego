@@ -9,7 +9,7 @@
       <div v-else class="image-placeholder"><i class="fa fa-image"></i></div>
 
       <map :name="`map-${component.domId}`" v-if="component.action.config.length">
-        <area shape="rect" v-for="(item, idx) in component.action.config" :key="idx" :coords="`${item.x},${item.y},${item.x+item.w},${item.x+item.h}`" @click="handleClick(item)" />
+        <area shape="rect" v-for="(item, idx) in component.action.config" :key="idx" :coords="`${item.x * scale},${item.y * scale},${item.x * scale + item.w * scale},${item.x * scale + item.h * scale}`" @click="handleClick(item)" />
       </map>
     </div>
   </div>
@@ -26,7 +26,8 @@ export default {
   data() {
     return {
       imgUrl: this.component.style[1].val,
-      action: this.component.action.config[0]
+      action: this.component.action.config[0],
+      scale: 1
     };
   },
   computed: {
@@ -46,6 +47,13 @@ export default {
       },
       deep: true,
     },
+  },
+  mounted() {
+    const wrap = document.querySelector(`[comp-id="${this.component.domId}"]`)
+    if (wrap) {
+      // 缩放比计算
+      this.scale = wrap.offsetWidth / 375
+    }
   },
   methods: {
     handleClick(item) {
