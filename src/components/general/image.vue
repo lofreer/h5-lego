@@ -49,7 +49,7 @@ export default {
     },
   },
   mounted() {
-    const wrap = document.querySelector(`[comp-id="${this.component.domId}"]`)
+    const wrap = document.querySelector(`[comp-id="${this.component.domId}"] .image-box`)
     if (wrap) {
       // 缩放比计算
       this.scale = wrap.offsetWidth / 375
