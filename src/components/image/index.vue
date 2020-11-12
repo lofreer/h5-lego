@@ -9,7 +9,7 @@
       <div v-else class="image-placeholder"><i class="fa fa-image"></i></div>
 
       <map :name="`map-${component.domId}`" v-if="component.action.config.length">
-        <area shape="rect" v-for="(item, idx) in component.action.config" :key="idx" :coords="`${item.x * scale},${item.y * scale},${item.x * scale + item.w * scale},${item.x * scale + item.h * scale}`" @click="handleClick(item)" />
+        <area shape="rect" v-for="(item, idx) in component.action.config" :key="idx" :coords="`${item.x * scale},${item.y * scale},${item.x * scale + item.w * scale},${item.y * scale + item.h * scale}`" @click="handleClick(item)" />
       </map>
     </div>
   </div>

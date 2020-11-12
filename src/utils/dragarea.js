@@ -1,18 +1,21 @@
-/*
+/**
 * author: "oujizeng",
 * license: "MIT",
-* name: "dragarea.js",
 * github: "https://github.com/yangyuji/drag-area",
-* version: "2.0.0"
+* name: "dragarea.js",
+* version: "2.1.3"
 */
 
 (function (root, factory) {
   if (typeof module != 'undefined' && module.exports) {
     module.exports = factory();
+  } else if (typeof define == 'function' && define.amd) {
+    define(function () { return factory(); });
   } else {
     root['dragarea'] = factory();
   }
 }(this, function () {
+  'use strict'
 
   var getEle = function (str) {
     return document.getElementById(str);
@@ -22,14 +25,30 @@
     return o.currentStyle ? o.currentStyle[key] : window.getComputedStyle(o, null)[key];
   };
 
-  function getScroll(scrollProp, offsetProp) {
-    if (typeof global[offsetProp] !== 'undefined') {
-      return global[offsetProp];
+  var getScroll = function (scrollProp, offsetProp) {
+    if (typeof window[offsetProp] !== 'undefined') {
+      return window[offsetProp];
     }
     if (document.documentElement.clientHeight) {
       return document.documentElement[scrollProp];
     }
     return document.body[scrollProp];
+  }
+
+  var getBoxContent = function (target) {
+    var boxContent = null, parent = target.parentNode;
+    // 获取标记的拖动元素
+    if (target.classList.contains('crop-box-content')) {
+      boxContent = target;
+    }
+    while (parent && boxContent == null) {
+      if (parent.classList && parent.classList.contains('crop-box-content')) {
+        boxContent = parent;
+      } else {
+        parent = parent.parentNode;
+      }
+    }
+    return boxContent
   }
 
   var getOffset = function (el) {
@@ -47,8 +66,8 @@
     init: function (opt) {
 
       var container = getEle(opt.container),
-        cropBox = opt.cropBox ? getEle(opt.cropBox) : null,
-        moveAdd = opt.hasOwnProperty('moveAdd') ? opt.moveAdd : true,
+        hotbox = getEle(opt.hotbox),
+        boxIdx = 1,
 
         start = null,
         flag = false,
@@ -59,25 +78,24 @@
         currentHotBox = null,
         newHotBox = null;
 
-      if(!container){
-        console.warn('container null')
+      if (!container || !hotbox) {
         return
       }
 
       // 先清空上一次的区域
       var childs = container.childNodes;
       // 从0到length会删不全
-      if (cropBox && childs.length) {
+      if (hotbox && childs.length) {
         for (var i = childs.length - 1; i >= 0; i--) {
-          childs[i].classList.contains('crop-box') && childs[i].parentNode.removeChild(childs[i]);
+          childs[i].classList.contains('hot-crop-box') && childs[i].parentNode.removeChild(childs[i]);
         }
       }
 
       if (opt.initareas && opt.initareas.length) {
         for (var i = 0; i < opt.initareas.length; i++) {
           // 创建一个新热区
-          var box = cropBox.cloneNode(true);
-          box.id = 'cropBox-' + i;
+          var box = hotbox.cloneNode(true);
+          box.id = 'hotBox-' + i;
           box.dataset.index = i;
           i == 0 && box.classList.add('active');
           i > 0 && box.classList.remove('active');
@@ -93,12 +111,20 @@
         }
       }
 
+      container.addEventListener('mouseup', function(e) {
+        // 删除空标记
+        const emptyList = document.querySelectorAll('.hot-crop-box.empty')
+        emptyList.forEach(v => {v && v.remove()})
+      })
+
       container.addEventListener('mousedown', function (e) {
 
         e.stopImmediatePropagation();
 
         // 获取可拖动范围
-        var usearea = getOffset(container);
+        var usearea = getOffset(container),
+          // 当前触发对象
+          target = e.target;
 
         //记录鼠标开始位置
         start = {
@@ -108,9 +134,6 @@
 
         // 标记本次鼠标按下
         flag = true;
-
-        // 当前触发对象
-        var target = e.target;
 
         // 禁止选择事件
         document.onselectstart = function () {
@@ -122,22 +145,20 @@
         }
 
         // 拖动新建热区
-        if (target.classList.contains('area-img') && moveAdd) {
+        if (target.classList.contains('hot-area-img')) {
 
           // 鼠标在容器内的相对位置
           var relativePosition = {
             x: start.x - parseInt(usearea.left),
             y: start.y - parseInt(usearea.top)
-          }
+          };
 
           // 创建一个新热区
-          var boxs = container.childNodes, boxIdx = 0;
-          if (boxs.length > 1) {
-            boxIdx = parseInt(boxs[boxs.length - 1].dataset.index) + 1;
-          }
-          newHotBox = cropBox.cloneNode(true);
-          newHotBox.id = 'cropBox-' + boxIdx;
-          newHotBox.dataset.index = boxIdx;
+          newHotBox = hotbox.cloneNode(true);
+          newHotBox.id = 'hotBox-' + boxIdx;
+          newHotBox.dataset['index'] = boxIdx;
+          // 添加空标记
+          newHotBox.classList.add('empty')
           newHotBox.style.width = '0px';
           newHotBox.style.height = '0px';
           newHotBox.style.left = relativePosition.x + 'px';
@@ -151,13 +172,18 @@
             if (flag) {
               // 新增热区标签
               addHotFlag = true;
+              // 去除空标记
+              newHotBox.classList.remove('empty')
               // 显示热区
               newHotBox.style.display = 'block';
+              // 移除其他框的active
+              removeOtherActive();
+              newHotBox.classList.add('active');
               // 实际移动距离
               var move = {
                 x: e.clientX - start.x,
                 y: e.clientY - start.y
-              }
+              };
 
               // 向左上移动
               if (move.x < 0 && move.y <= 0) {
@@ -165,12 +191,12 @@
                 var limit = {
                   x: e.clientX < usearea.left ? usearea.left : e.clientX,
                   y: e.clientY < usearea.top ? usearea.top : e.clientY
-                }
+                };
                 // 应该移动距离
                 var distance = {
                   x: limit.x - start.x,
                   y: limit.y - start.y
-                }
+                };
                 // 随鼠标移动位置并放大
                 newHotBox.style.left = relativePosition.x - Math.abs(distance.x) + 'px';
                 newHotBox.style.top = relativePosition.y - Math.abs(distance.y) + 'px';
@@ -183,12 +209,12 @@
                 var limit = {
                   x: e.clientX < usearea.left ? usearea.left : e.clientX,
                   y: e.clientY > usearea.top + usearea.height ? usearea.top + usearea.height : e.clientY
-                }
+                };
                 // 应该移动距离
                 var distance = {
                   x: limit.x - start.x,
                   y: limit.y - start.y
-                }
+                };
                 // 随鼠标移动位置并放大
                 newHotBox.style.left = relativePosition.x - Math.abs(move.x) > 0 ? relativePosition.x - Math.abs(move.x) + 'px' : '0px';
                 newHotBox.style.width = Math.abs(distance.x) + 'px';
@@ -200,12 +226,12 @@
                 var limit = {
                   x: e.clientX > usearea.left + usearea.width ? usearea.left + usearea.width : e.clientX,
                   y: e.clientY < usearea.top ? usearea.top : e.clientY
-                }
+                };
                 // 应该移动距离
                 var distance = {
                   x: limit.x - start.x,
                   y: limit.y - start.y
-                }
+                };
                 // 随鼠标移动位置并放大
                 newHotBox.style.top = relativePosition.y - Math.abs(move.y) > 0 ? relativePosition.y - Math.abs(move.y) + 'px' : '0px';
                 newHotBox.style.width = Math.abs(distance.x) + 'px';
@@ -217,7 +243,7 @@
                 var limit = {
                   x: e.clientX > usearea.left + usearea.width ? usearea.left + usearea.width : e.clientX,
                   y: e.clientY > usearea.top + usearea.height ? usearea.top + usearea.height : e.clientY
-                }
+                };
                 // 随鼠标放大
                 newHotBox.style.width = limit.x - start.x + 'px';
                 newHotBox.style.height = limit.y - start.y + 'px';
@@ -226,30 +252,18 @@
           }
         }
 
-        var drag = null, parent = target.parentNode;
-        // 获取标记的拖动元素
-        if (target.classList.contains('crop-box-content')) {
-          drag = target;
-        }
-        while (parent && drag == null) {
-          if (parent.classList && parent.classList.contains('crop-box-content')) {
-            drag = parent;
-          } else {
-            parent = parent.parentNode;
-          }
-        }
-
+        var drag = getBoxContent(target);
         // 拖动热区
         if (drag) {
 
           // 相对页面当前位置
-          var initPosition = getOffset(drag.parentNode)
+          var initPosition = getOffset(drag.parentNode);
 
           // 相对container当前位置
           var startPosition = {
             x: drag.parentNode.style.left || getCss(drag.parentNode, 'left'),
             y: drag.parentNode.style.top || getCss(drag.parentNode, 'top')
-          }
+          };
 
           // 鼠标移动限制
           var limitArea = {
@@ -265,12 +279,15 @@
               // 拖动热区标签
               dragAreaFlag = true;
               currentHotBox = drag.parentNode;
+              // 移除其他框的active
+              removeOtherActive();
+              currentHotBox.classList.add('active');
 
               // 热区拖动限制
               var movelimit = {
                 x: e.clientX > limitArea.maxLeft ? limitArea.maxLeft : e.clientX < limitArea.minLeft ? limitArea.minLeft : e.clientX,
-                y: e.clientY > limitArea.maxTop ? limitArea.maxTop : e.clientY < limitArea.minTop ? limitArea.minTop : e.clientY,
-              }
+                y: e.clientY > limitArea.maxTop ? limitArea.maxTop : e.clientY < limitArea.minTop ? limitArea.minTop : e.clientY
+              };
 
               drag.parentNode.style.left = parseInt(startPosition.x) + movelimit.x - start.x + 'px';
               drag.parentNode.style.top = parseInt(startPosition.y) + movelimit.y - start.y + 'px';
@@ -280,13 +297,15 @@
 
         // 拖动边框
         if (target.classList.contains('cropper-point')) {
+          // 当前热区框
+          currentHotBox = target.parentNode;
 
           // 相对container当前位置
           var initAttr = {
-            width: target.parentNode.style.width || getCss(target.parentNode, 'width'),
-            height: target.parentNode.style.height || getCss(target.parentNode, 'height'),
-            left: target.parentNode.style.left || getCss(target.parentNode, 'left'),
-            top: target.parentNode.style.top || getCss(target.parentNode, 'top'),
+            width: currentHotBox.style.width || getCss(currentHotBox, 'width'),
+            height: currentHotBox.style.height || getCss(currentHotBox, 'height'),
+            left: currentHotBox.style.left || getCss(currentHotBox, 'left'),
+            top: currentHotBox.style.top || getCss(currentHotBox, 'top'),
             direct: target.dataset.direct || 'se'
           };
 
@@ -295,7 +314,7 @@
             if (flag) {
               // 拖动缩放标签
               dragPointFlag = true;
-              currentHotBox = target.parentNode;
+
               // 鼠标移动距离
               var moveArea = {
                 x: e.clientX > usearea.left + usearea.width ? usearea.left + usearea.width - start.x : e.clientX < usearea.left ? usearea.left - start.x : e.clientX - start.x,
@@ -303,61 +322,61 @@
               }
               if (initAttr.direct == 'e') {
                 var nowW = parseInt(initAttr.width) + parseInt(moveArea.x);
-                target.parentNode.style.width = nowW + 'px';
+                currentHotBox.style.width = nowW + 'px';
               }
               if (initAttr.direct == 's') {
                 var nowH = parseInt(initAttr.height) + parseInt(moveArea.y);
-                target.parentNode.style.height = nowH + 'px';
+                currentHotBox.style.height = nowH + 'px';
               }
               if (initAttr.direct == 'w') {
                 var nowW = parseInt(initAttr.width) - parseInt(moveArea.x);
                 var offLeft = parseInt(initAttr.left) + parseInt(moveArea.x);
-                target.parentNode.style.width = nowW + 'px';
-                target.parentNode.style.left = offLeft + 'px';
+                currentHotBox.style.width = nowW + 'px';
+                currentHotBox.style.left = offLeft + 'px';
               }
               if (initAttr.direct == 'n') {
                 var nowH = parseInt(initAttr.height) - parseInt(moveArea.y);
                 var offTop = parseInt(initAttr.top) + parseInt(moveArea.y);
-                target.parentNode.style.height = nowH + 'px';
-                target.parentNode.style.top = offTop + 'px';
+                currentHotBox.style.height = nowH + 'px';
+                currentHotBox.style.top = offTop + 'px';
               }
               if (initAttr.direct == 'ne') {
                 var nowW = parseInt(initAttr.width) + parseInt(moveArea.x);
                 var nowH = parseInt(initAttr.height) - parseInt(moveArea.y);
                 var offTop = parseInt(initAttr.top) + parseInt(moveArea.y);
-                target.parentNode.style.height = nowH + 'px';
-                target.parentNode.style.top = offTop + 'px';
-                target.parentNode.style.width = nowW + 'px';
+                currentHotBox.style.height = nowH + 'px';
+                currentHotBox.style.top = offTop + 'px';
+                currentHotBox.style.width = nowW + 'px';
               }
               if (initAttr.direct == 'nw') {
                 var nowH = parseInt(initAttr.height) - parseInt(moveArea.y);
                 var offTop = parseInt(initAttr.top) + parseInt(moveArea.y);
                 var nowW = parseInt(initAttr.width) - parseInt(moveArea.x);
                 var offLeft = parseInt(initAttr.left) + parseInt(moveArea.x);
-                target.parentNode.style.width = nowW + 'px';
-                target.parentNode.style.left = offLeft + 'px';
-                target.parentNode.style.height = nowH + 'px';
-                target.parentNode.style.top = offTop + 'px';
+                currentHotBox.style.width = nowW + 'px';
+                currentHotBox.style.left = offLeft + 'px';
+                currentHotBox.style.height = nowH + 'px';
+                currentHotBox.style.top = offTop + 'px';
               }
               if (initAttr.direct == 'sw') {
                 var nowH = parseInt(initAttr.height) + parseInt(moveArea.y);
                 var nowW = parseInt(initAttr.width) - parseInt(moveArea.x);
                 var offLeft = parseInt(initAttr.left) + parseInt(moveArea.x);
-                target.parentNode.style.height = nowH + 'px';
-                target.parentNode.style.width = nowW + 'px';
-                target.parentNode.style.left = offLeft + 'px';
+                currentHotBox.style.height = nowH + 'px';
+                currentHotBox.style.width = nowW + 'px';
+                currentHotBox.style.left = offLeft + 'px';
               }
               if (initAttr.direct == 'se') {
                 var nowW = parseInt(initAttr.width) + parseInt(moveArea.x);
                 var nowH = parseInt(initAttr.height) + parseInt(moveArea.y);
-                target.parentNode.style.width = nowW + 'px';
-                target.parentNode.style.height = nowH + 'px';
+                currentHotBox.style.width = nowW + 'px';
+                currentHotBox.style.height = nowH + 'px';
               }
             }
           }
         }
 
-      }, false);
+      });
 
       document.addEventListener('mouseup', function (e) {
 
@@ -370,30 +389,19 @@
             parseInt(newHotBox.style.width) < 20 && console.log('热区宽度太窄了，建议大于20px');
             parseInt(newHotBox.style.height) < 20 && console.log('热区高度太小了，建议大于20px');
           } else {
-            document.querySelectorAll('div.crop-box').forEach(function (val) {
-              val.classList.remove('active');
-            });
-            newHotBox.classList.add('active');
-            opt.newcallback && opt.newcallback(newHotBox)
+            boxIdx++;
+            opt.newcallback && opt.newcallback(newHotBox);
           }
         }
 
         // 是否拖动热区
         if (dragAreaFlag) {
-          document.querySelectorAll('div.crop-box').forEach(function (val) {
-            val.classList.remove('active');
-          });
-          currentHotBox.classList.add('active');
-          opt.dragareacallback && opt.dragareacallback(currentHotBox)
+          opt.dragareacallback && opt.dragareacallback(currentHotBox);
         }
 
         // 是否拖动缩放
         if (dragPointFlag) {
-          document.querySelectorAll('div.crop-box').forEach(function (val) {
-            val.classList.remove('active');
-          });
-          currentHotBox.classList.add('active');
-          opt.dragpointcallback && opt.dragpointcallback(currentHotBox)
+          opt.dragpointcallback && opt.dragpointcallback(currentHotBox);
         }
 
         flag = false;
@@ -408,31 +416,22 @@
         document.onmousemove = null;
         document.onselectstart = null;
         container.ondragstart = null;
-      }, false);
+      });
 
       container.addEventListener('click', function (e) {
+        var boxCnt = getBoxContent(e.target);
+        if (boxCnt) {
+          // 移除其他框的active
+          removeOtherActive();
+          boxCnt.parentNode.classList.add('active');
+          opt.clickcallback && opt.clickcallback(boxCnt.parentNode);
+        }
+      });
 
-        var t = e.target;
-        var drag = null, parent = t.parentNode;
-        // 获取标记的拖动元素
-        if (t.classList.contains('crop-box-content')) {
-          drag = t;
-        }
-        while (parent && drag == null) {
-          if (parent.classList && parent.classList.contains('crop-box-content')) {
-            drag = parent;
-          } else {
-            parent = parent.parentNode;
-          }
-        }
-        if (drag) {
-          document.querySelectorAll('div.crop-box').forEach(function (val) {
-            val.classList.remove('active');
-          });
-          drag.parentNode.classList.add('active');
-          opt.clickcallback && opt.clickcallback(drag.parentNode)
-        }
-      }, false);
+      function removeOtherActive() {
+        var active = container.querySelector('.hot-crop-box.active');
+        active && active.classList.remove('active');
+      }
     }
   };
 
