@@ -14,7 +14,7 @@ let host = daily
 // }
 // 本地开发环境
 if (process.env.NODE_ENV === 'development') {
-  host = 'http://127.0.0.1:7001'
+  // host = 'http://127.0.0.1:7001'
 }
 
 // create an axios instance
