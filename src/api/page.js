@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import request from '@/lego/utils/request'
 
 const prefix = '/api/v1'
 

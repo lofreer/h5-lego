@@ -11,7 +11,7 @@ const routes = [
   },
   {
     path: '/editor/:pageId',
-    component: () => import('@/views/app.vue'),
+    component: () => import('@/lego/index.vue'),
     meta: {title: '登录'}
   },
   {
