@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { pageList, pageCreate, pageUpdate, pageDestroy } from '@/api/page'
+import { getPageList, createPage, updatePage, deletePage } from '@/api/page'
 
 export default {
   data() {
@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     fetchList() {
-      pageList({isPaging: 0}).then(res => {
+      getPageList({isPaging: 0}).then(res => {
         this.results = res.list
       })
     },
@@ -91,7 +91,7 @@ export default {
       this.$confirm("确定要删除吗？", "提示", {
         type: "warning",
       }).then(() => {
-        pageDestroy({id: row.id}).then(res => {
+        deletePage({id: row.id}).then(res => {
         this.$message.success("删除成功")
         this.fetchList()
       })
@@ -104,7 +104,7 @@ export default {
             name: this.form.name,
             description: this.form.description
           }
-          pageCreate(params).then(res => {
+          createPage(params).then(res => {
             this.dialogFormVisible = false
             this.$message.success("创建成功")
             this.fetchList()

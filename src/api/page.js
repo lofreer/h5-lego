@@ -6,7 +6,7 @@ const prefix = '/api/v1'
  * 页面查询：列表
  * @param {*} query
  */
-export const pageList = (query) => {
+export const getPageList = (query) => {
   return request({
     url: `${prefix}/lego/page/list`,
     method: 'get',
@@ -18,7 +18,7 @@ export const pageList = (query) => {
  * 页面查询
  * @param {*} query
  */
-export const pageOne = (query) => {
+export const getPageDetail = (query) => {
   return request({
     url: `${prefix}/lego/page`,
     method: 'get',
@@ -30,7 +30,7 @@ export const pageOne = (query) => {
  * 页面创建
  * @param {*} query
  */
-export const pageCreate = (query) => {
+export const createPage = (query) => {
   return request({
     url: `${prefix}/lego/page`,
     method: 'post',
@@ -42,7 +42,7 @@ export const pageCreate = (query) => {
  * 页面修改
  * @param {*} query
  */
-export const pageUpdate = (query) => {
+export const updatePage = (query) => {
   return request({
     url: `${prefix}/lego/page`,
     method: 'put',
@@ -54,7 +54,7 @@ export const pageUpdate = (query) => {
  * 页面删除
  * @param {*} query
  */
-export const pageDestroy = (query) => {
+export const deletePage = (query) => {
   return request({
     url: `${prefix}/lego/page`,
     method: 'delete',

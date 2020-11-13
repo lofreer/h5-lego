@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import legoHeader from "@/lego/layout/header.vue";
-import legoBody from "@/lego/layout/main.vue";
+import legoHeader from "./layout/header.vue";
+import legoBody from "./layout/main.vue";
 
 export default {
   name: "lego",

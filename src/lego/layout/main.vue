@@ -113,7 +113,7 @@ import legoPageOpt from './pageOption.vue'
 import pageOption from "../config/page.config.js";
 // 组件列表
 import libs from "../components"
-import { pageList, pageOne, pageCreate, pageUpdate, pageDestroy } from '@/api/page'
+import { getPageList, getPageDetail, createPage, updatePage, deletePage } from '@/api/page'
 
 // 定时器
 let timer = null
@@ -245,7 +245,7 @@ export default {
   },
   methods: {
     fetchPageConfig() {
-      pageOne({id: this.$route.params.pageId}).then(res => {
+      getPageDetail({id: this.$route.params.pageId}).then(res => {
         if (res.config) {
           const data = JSON.parse(res.config)
           this.compList = data.component;
@@ -273,7 +273,7 @@ export default {
       // 限流
       window.clearTimeout(timer)
       timer = setTimeout(() => {
-        pageUpdate(data).then(res => {})
+        updatePage(data).then(res => {})
       }, interval)
     },
     showPageSet() {
