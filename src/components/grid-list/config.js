@@ -267,21 +267,6 @@ module.exports = {
       title: '默认标题',
       desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
       click: null
-    }, {
-      val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
-      title: '默认标题',
-      desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
-      click: null
-    }, {
-      val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
-      title: '默认标题',
-      desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
-      click: null
-    }, {
-      val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
-      title: '默认标题',
-      desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
-      click: null
     }]
   },
   data: [
