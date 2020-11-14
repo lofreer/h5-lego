@@ -62,7 +62,7 @@ export default {
     };
   },
   components: {
-    formItem: () => import("@/common/formItem.vue"),
+    formItem: () => import("../../common/formItem.vue"),
     timeoutItem: () => import("./timeoutItem.vue"),
   },
   props: {

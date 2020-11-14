@@ -55,7 +55,7 @@
       }
     },
     components: {
-      formItem: () => import('@/common/formItem.vue'),
+      formItem: () => import('../../common/formItem.vue'),
       imageClick: () => import('./imageClick.vue')
     },
     props: {

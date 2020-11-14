@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import util from '@/utils/util.js'
+import util from '../../utils/util.js'
 import defaultConf from './config.js'
 
 export default {
@@ -44,7 +44,7 @@ export default {
     }
   },
   components: {
-    upload: () => import("@/common/upload.vue"),
+    upload: () => import("../../common/upload.vue"),
   },
   props: {
     paragraphs: {
