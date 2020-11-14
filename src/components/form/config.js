@@ -142,12 +142,42 @@ module.exports = {
       isNecessary: true
     }, {
       type: 'input-number',
-      label: '圆角',
-      attr: 'border-radius',
+      label: '圆角-上左',
+      attr: 'border-top-left-radius',
       val: 0,
       unit: 'px',
       min: 0,
-      max: 20,
+      max: 50,
+      step: 1,
+      isNecessary: true
+    }, {
+      type: 'input-number',
+      label: '圆角-上右',
+      attr: 'border-top-right-radius',
+      val: 0,
+      unit: 'px',
+      min: 0,
+      max: 50,
+      step: 1,
+      isNecessary: true
+    }, {
+      type: 'input-number',
+      label: '圆角-下右',
+      attr: 'border-bottom-right-radius',
+      val: 0,
+      unit: 'px',
+      min: 0,
+      max: 50,
+      step: 1,
+      isNecessary: true
+    }, {
+      type: 'input-number',
+      label: '圆角-下左',
+      attr: 'border-bottom-left-radius',
+      val: 0,
+      unit: 'px',
+      min: 0,
+      max: 50,
       step: 1,
       isNecessary: true
     }

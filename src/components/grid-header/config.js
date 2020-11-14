@@ -1,17 +1,17 @@
 module.exports = {
-  title: '页面标题',
+  title: '网格标题',
   domId: '',
   domName: '',
   base: [
     {
       type: 'text',
-      label: '主标题',
-      val: '主标题文案',
+      label: '标题',
+      val: '标题文案',
       isNecessary: true
     }, {
       type: 'text',
       label: '副标题',
-      val: '副标题文案 - 作者 - 2019.09.09',
+      val: '更多',
       isNecessary: false
     }
   ],
@@ -153,13 +153,13 @@ module.exports = {
     config: [
       {
         type: 'font',
-        label: '主标字体',
+        label: '标题字体',
         attr: ['font-weight', 'text-decoration', 'font-style', 'text-align'],
         val: ['600', 'none', 'inherit', 'left'],
         isNecessary: false
       }, {
         type: 'input-number',
-        label: '主标大小',
+        label: '标题大小',
         attr: 'font-size',
         val: 16,
         unit: 'px',
@@ -169,13 +169,13 @@ module.exports = {
         isNecessary: false
       }, {
         type: 'color-picker',
-        label: '主标颜色',
+        label: '标题颜色',
         attr: 'color',
         val: '#333333',
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '主标字距',
+        label: '标题字距',
         attr: 'letter-spacing',
         val: 0,
         step: 1,
@@ -215,17 +215,15 @@ module.exports = {
         min: 0,
         unit: 'px',
         isNecessary: false
-      }, {
-        type: 'input-number',
-        label: '副标上距',
-        attr: 'margin-top',
-        val: 10,
-        step: 1,
-        max: 100,
-        min: 0,
-        unit: 'px',
-        isNecessary: false
       }
     ]
+  },
+  action: {
+    type: 'header-more-click',
+    title: '跳转项配置',
+    config: [{
+      text: '默认项1',
+      click: null
+    }]
   }
 }

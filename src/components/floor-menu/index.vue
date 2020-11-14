@@ -70,11 +70,13 @@ export default {
       return ''
     },
     borderRadius() {
-      const value = this.component.style.filter(v => v.attr === 'border-radius')[0]
-      if (value) {
-        return value.val + (value.unit || '')
-      }
-      return ''
+      const defaultV = '0px'
+      const tl = this.component.style.find(v => v.attr === 'border-top-left-radius')
+      const tr = this.component.style.find(v => v.attr === 'border-top-right-radius')
+      const br = this.component.style.find(v => v.attr === 'border-bottom-right-radius')
+      const bl = this.component.style.find(v => v.attr === 'border-bottom-left-radius')
+
+      return `${tl ? tl.val + tl.unit || '' : defaultV} ${tr ? tr.val + tr.unit || '' : tr} ${br ? br.val + br.unit || '' : defaultV} ${bl ? bl.val + bl.unit || '' : defaultV} `
     },
     fillColor() {
       const value = this.component.style.filter(v => v.attr === 'color')[0]
