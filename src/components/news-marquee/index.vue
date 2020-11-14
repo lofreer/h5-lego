@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import NewsMarquee from '@/utils/news-marquee.js'
+import NewsMarquee from '../../utils/news-marquee.js'
 
 export default {
   name: 'comp-news-marquee',

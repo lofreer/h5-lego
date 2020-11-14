@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import dragArea from "@/utils/dragarea.js";
+import dragArea from "../../utils/dragarea.js";
 export default {
   props: {
     show: {

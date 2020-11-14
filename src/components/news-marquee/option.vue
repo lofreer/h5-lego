@@ -48,7 +48,7 @@ export default {
     return {};
   },
   components: {
-    formItem: () => import("@/common/formItem.vue"),
+    formItem: () => import("../../common/formItem.vue"),
     marqueeItem: () => import("./marqueeItem.vue"),
   },
   props: {
