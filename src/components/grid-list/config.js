@@ -1,7 +1,20 @@
 module.exports = {
-  title: '纵向列表',
+  title: '网格单元',
   domId: '',
   domName: '',
+  base: [
+    {
+      type: 'input-number',
+      label: '最大列数',
+      attr: 'grid-column',
+      val: 3,
+      unit: '',
+      min: 2,
+      max: 4,
+      step: 1,
+      isNecessary: true
+    }
+  ],
   style: [
     {
       type: 'color-picker',
@@ -23,7 +36,7 @@ module.exports = {
       type: 'input-number',
       label: '内边距-右',
       attr: 'padding-right',
-      val: 0,
+      val: 5,
       unit: 'px',
       min: 0,
       max: 50,
@@ -33,7 +46,7 @@ module.exports = {
       type: 'input-number',
       label: '内边距-下',
       attr: 'padding-bottom',
-      val: 15,
+      val: 0,
       unit: 'px',
       min: 0,
       max: 50,
@@ -43,7 +56,7 @@ module.exports = {
       type: 'input-number',
       label: '内边距-左',
       attr: 'padding-left',
-      val: 0,
+      val: 5,
       unit: 'px',
       min: 0,
       max: 50,
@@ -116,9 +129,15 @@ module.exports = {
     title: '列表项样式',
     config: [
       {
+        type: 'color-picker',
+        label: '背景颜色',
+        attr: 'grid-list-card_background-color',
+        val: '#ffffff',
+        isNecessary: false
+      }, {
         type: 'input-number',
-        label: '上内边距',
-        attr: 'vertical-list-item_padding-top',
+        label: '卡片圆角',
+        attr: 'grid-list-card_border-radius',
         val: 0,
         unit: 'px',
         min: 0,
@@ -127,9 +146,9 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '下内边距',
-        attr: 'vertical-list-item_padding-bottom',
-        val: 10,
+        label: '内边距-上',
+        attr: 'grid-list-item_padding-top',
+        val: 0,
         unit: 'px',
         min: 0,
         max: 50,
@@ -137,9 +156,9 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '左内边距',
-        attr: 'vertical-list-item_padding-left',
-        val: 10,
+        label: '内边距-右',
+        attr: 'grid-list-item_padding-right',
+        val: 5,
         unit: 'px',
         min: 0,
         max: 50,
@@ -147,9 +166,19 @@ module.exports = {
         isNecessary: true
       }, {
         type: 'input-number',
-        label: '右内边距',
-        attr: 'vertical-list-item_padding-right',
-        val: 10,
+        label: '内边距-下',
+        attr: 'grid-list-item_padding-bottom',
+        val: 15,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '内边距-左',
+        attr: 'grid-list-item_padding-left',
+        val: 5,
         unit: 'px',
         min: 0,
         max: 50,
@@ -158,8 +187,8 @@ module.exports = {
       }, {
         type: 'input-number',
         label: '图片高度',
-        attr: 'vertical-list-logo_height',
-        val: 160,
+        attr: 'grid-list-image_height',
+        val: 100,
         unit: 'px',
         step: 1,
         max: 300,
@@ -167,8 +196,18 @@ module.exports = {
         isNecessary: false
       }, {
         type: 'input-number',
+        label: '图片圆角',
+        attr: 'grid-list-image_border-radius',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
         label: '标题大小',
-        attr: 'vertical-list-title_font-size',
+        attr: 'grid-list-title_font-size',
         val: 16,
         unit: 'px',
         step: 1,
@@ -178,13 +217,13 @@ module.exports = {
       }, {
         type: 'color-picker',
         label: '标题颜色',
-        attr: 'vertical-list-title_color',
+        attr: 'grid-list-title_color',
         val: '#333333',
         isNecessary: false
       }, {
         type: 'input-number',
         label: '标题粗细',
-        attr: 'vertical-list-title_font-weight',
+        attr: 'grid-list-title_font-weight',
         val: 500,
         unit: '',
         min: 300,
@@ -194,7 +233,7 @@ module.exports = {
       }, {
         type: 'input-number',
         label: '描述大小',
-        attr: 'vertical-list-desc_font-size',
+        attr: 'grid-list-desc_font-size',
         val: 13,
         unit: 'px',
         step: 1,
@@ -204,7 +243,7 @@ module.exports = {
       }, {
         type: 'color-picker',
         label: '描述颜色',
-        attr: 'vertical-list-desc_color',
+        attr: 'grid-list-desc_color',
         val: '#999999',
         isNecessary: false
       }
@@ -214,6 +253,26 @@ module.exports = {
     type: 'vertical-item-click',
     title: '列表项配置',
     config: [{
+      val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
+      title: '默认标题',
+      desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
+      click: null
+    }, {
+      val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
+      title: '默认标题',
+      desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
+      click: null
+    }, {
+      val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
+      title: '默认标题',
+      desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
+      click: null
+    }, {
+      val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
+      title: '默认标题',
+      desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
+      click: null
+    }, {
       val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
       title: '默认标题',
       desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',

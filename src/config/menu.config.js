@@ -38,6 +38,21 @@ module.exports = [
       },
     ]
   }, {
+    title: '业务组件',
+    collapse: true,
+    items: [
+      {
+        key: 'comp-grid-header',
+        text: '网格标题',
+        icon: 'fa-header'
+      },
+      {
+        key: 'comp-grid-list',
+        text: '网格单元',
+        icon: 'fa-columns'
+      },
+    ]
+  }, {
     title: '样式组件',
     collapse: true,
     items: [

@@ -67,5 +67,13 @@ export default {
   'comp-news-marquee': () => import('./news-marquee'),
   'comp-news-marquee-config': () => import('./news-marquee/config'),
   'comp-news-marquee-option': () => import('./news-marquee/option'),
+  // 网格标题
+  'comp-grid-header': () => import('./grid-header'),
+  'comp-grid-header-config': () => import('./grid-header/config'),
+  'comp-grid-header-option': () => import('./grid-header/option'),
+  // 网格单元
+  'comp-grid-list': () => import('./grid-list'),
+  'comp-grid-list-config': () => import('./grid-list/config'),
+  'comp-grid-list-option': () => import('./grid-list/option'),
 
 }
