@@ -6,7 +6,7 @@
       <h3 class="title" :style="getH3Style">{{ component.base[0].val }}</h3>
       <div class="subtitle">
         <span v-if="component.base[1].val" :style="getPStyle" @click="handleClick">{{ component.base[1].val }}</span>
-        <i v-if="component.action.config[0].click" class="fa fa-angle-right" :style="{color: getPColor}" @click="handleClick"></i>
+        <i v-if="component.action.config[0].click || component.base[1].val" class="fa fa-angle-right" :style="{color: getPColor}" @click="handleClick"></i>
       </div>
     </div>
   </div>
