@@ -5,7 +5,7 @@
     :close-on-click-modal="false"
     :append-to-body="false"
     :visible.sync="visible"
-    @close="$emit('update:show', false)"
+    @close="$emit('close')"
     width="395px"
   >
     <el-row>
@@ -16,7 +16,7 @@
         <iframe
           id="ifr-preview"
           allowtransparency="yes"
-          :src="`http://render.koudaikaoyan.com/${$route.params.pageId || ''}}`"
+          :src="`http://render.koudaikaoyan.com`"
         ></iframe>
 
         <div class="pre-desc">
