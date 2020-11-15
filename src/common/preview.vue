@@ -16,7 +16,7 @@
         <iframe
           id="ifr-preview"
           allowtransparency="yes"
-          :src="`http://render.koudaikaoyan.com`"
+          :src="`http://render.koudaikaoyan.com/${$route.params.pageId || ''}}`"
         ></iframe>
 
         <div class="pre-desc">
