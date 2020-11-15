@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <preview-dialog :show.sync="previewShow" @close="previewShow = false"></preview-dialog>
+    <preview-dialog :show.sync="previewShow"></preview-dialog>
 
     <div class="app-option">
       <template v-if="currentConfig">
