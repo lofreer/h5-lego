@@ -17,24 +17,25 @@
             :style="getItemStyle('grid-list-image_')"
           >
             <img class="page-list-item__img" :src="item.val" alt="cover">
-            <!-- <div
-              class="page-list-item__img"
-              :style="{ backgroundImage: 'url(' + item.val + ')' }"
-            ></div> -->
           </div>
-          <div class="page-list-item__bd">
+          <div class="page-list-item__bd" :style="getTextStyle('grid-list-text_')">
             <div
               class="page-list-item__title"
-              :style="getItemStyle('grid-list-title_')"
+              :style="getTextStyle('grid-list-title_')"
             >
               {{ item.title }}
             </div>
             <p
+              v-if="item.desc"
               class="page-list-item__desc"
-              :style="getItemStyle('grid-list-desc_')"
+              :style="getTextStyle('grid-list-desc_')"
             >
               {{ item.desc }}
             </p>
+            <div class="page-list-item__info" v-if="item.price || item.count">
+              <span class="price" v-if="item.price">¥{{ item.price }}</span>
+              <span class="count" v-if="item.count">销量 {{ item.count }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -101,6 +102,24 @@ export default {
       }
       return ret.join(";");
     },
+    getTextStyle(key) {
+      const ret = [];
+      this.component.textStyle.config.forEach((item) => {
+        const isItem = item.attr.indexOf(key);
+        const idx = item.attr.indexOf("_");
+        if (isItem === 0) {
+          const unit = item.unit || "";
+          item.val &&
+            ret.push(
+              item.attr.substring(idx + 1, item.attr.length) +
+                ":" +
+                item.val +
+                unit
+            );
+        }
+      });
+      return ret.join(";");
+    },
     handleClick(item) {
       if (this.$editor) {return}
       if (item.click) {
@@ -124,9 +143,9 @@ export default {
           this.component.data.forEach(v => {
             config[v.attr] = v.val
           })
-          const { url, method, headers, params, path, image, title, description, link } = config
+          const { url, method, headers, params, path, image, title, description, link, price, count } = config
 
-          if (!url || !method || !path || !image || !title || !description) { return }
+          if (!url || !method || !path || !image || !title) { return }
           const query = { method, url }
           if (headers) {
             query.headers = JSON.parse(headers)
@@ -149,12 +168,16 @@ export default {
             const titleKey = title.match(regex) && RegExp.$1
             const descriptionKey = description.match(regex) && RegExp.$1
             const linkKey = link ? link.match(regex) && RegExp.$1 : ''
+            const priceKey = price ? price.match(regex) && RegExp.$1 : ''
+            const countKey = count ? count.match(regex) && RegExp.$1 : ''
 
             data.forEach(item => {
               const value = {
                 val: imageKey ? image.replace(regex, item[imageKey]) : image,
                 title: titleKey ? title.replace(regex, item[titleKey]) : title,
                 desc: descriptionKey ? description.replace(regex, item[descriptionKey]) : description,
+                price: priceKey ? price.replace(regex, item[priceKey]) : price,
+                count: countKey ? count.replace(regex, item[countKey]) : count,
               }
               if (link) {
                 value.click = {
@@ -182,16 +205,17 @@ export default {
 .page-list {
   display: flex;
   flex-wrap: wrap;
-  // background-color: #fff;
 
   .page-list-item {
     position: relative;
     display: inline-block;
-    // text-align: center;
     width: 33%;
     vertical-align: top;
     box-sizing: border-box;
-    overflow: hidden;
+
+    .card {
+      overflow: hidden;
+    }
 
     .page-list-item__hd {
       text-align: center;
@@ -205,8 +229,6 @@ export default {
     }
 
     .page-list-item__bd {
-      min-width: 60px;
-      padding-top: 10px;
 
       .page-list-item__title {
         width: auto;
@@ -226,6 +248,22 @@ export default {
         word-wrap: break-word;
         word-break: break-all;
         margin: 5px 0 0 0;
+      }
+
+      .page-list-item__info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        line-height: 1;
+        margin-top: 10px;
+      }
+      .price {
+        font-size: 13px;
+        color: #ff2121;
+      }
+      .count {
+        font-size: 10px;
+        color: #666;
       }
     }
   }
