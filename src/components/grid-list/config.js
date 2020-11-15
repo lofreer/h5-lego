@@ -126,7 +126,7 @@ module.exports = {
   ],
   others: {
     type: 'item-style',
-    title: '列表项样式',
+    title: '列表项-基础样式',
     config: [
       {
         type: 'color-picker',
@@ -204,11 +204,18 @@ module.exports = {
         max: 50,
         step: 1,
         isNecessary: true
-      }, {
+      }
+    ]
+  },
+  textStyle: {
+    type: 'item-text-style',
+    title: '列表项-文本区样式',
+    config: [
+      {
         type: 'input-number',
         label: '标题大小',
         attr: 'grid-list-title_font-size',
-        val: 16,
+        val: 14,
         unit: 'px',
         step: 1,
         max: 100,
@@ -234,7 +241,7 @@ module.exports = {
         type: 'input-number',
         label: '描述大小',
         attr: 'grid-list-desc_font-size',
-        val: 13,
+        val: 12,
         unit: 'px',
         step: 1,
         max: 100,
@@ -246,6 +253,46 @@ module.exports = {
         attr: 'grid-list-desc_color',
         val: '#999999',
         isNecessary: false
+      }, {
+        type: 'input-number',
+        label: '内边距-上',
+        attr: 'grid-list-text_padding-top',
+        val: 10,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '内边距-右',
+        attr: 'grid-list-text_padding-right',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '内边距-下',
+        attr: 'grid-list-text_padding-bottom',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
+      }, {
+        type: 'input-number',
+        label: '内边距-左',
+        attr: 'grid-list-text_padding-left',
+        val: 0,
+        unit: 'px',
+        min: 0,
+        max: 50,
+        step: 1,
+        isNecessary: true
       }
     ]
   },
@@ -256,16 +303,22 @@ module.exports = {
       val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
       title: '默认标题',
       desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
+      price: '',
+      count: '',
       click: null
     }, {
       val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
       title: '默认标题',
       desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
+      price: '',
+      count: '',
       click: null
     }, {
       val: 'https://yangyuji.github.io/h5-factory/static/img/logo.png',
       title: '默认标题',
       desc: '默认文案描述，默认文案描述，默认文案描述默认文案描述',
+      price: '',
+      count: '',
       click: null
     }]
   },
@@ -333,7 +386,23 @@ module.exports = {
       label: '描述模板',
       attr: 'description',
       val: '',
-      placeholder: '必填：{{description}}',
+      placeholder: '非必填：{{description}}',
+      isNecessary: true
+    },
+    {
+      type: 'text',
+      label: '价格模板',
+      attr: 'price',
+      val: '',
+      placeholder: '非必填：{{price}}',
+      isNecessary: true
+    },
+    {
+      type: 'text',
+      label: '销量模板',
+      attr: 'count',
+      val: '',
+      placeholder: '非必填：{{count}}',
       isNecessary: true
     },
     {

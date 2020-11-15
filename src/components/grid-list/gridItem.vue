@@ -10,7 +10,13 @@
           <el-input v-model="item.title" :maxlength="128" placeholder="必填"></el-input>
         </el-form-item>
         <el-form-item class="small" label="描述：">
-          <el-input v-model="item.desc" :maxlength="128" placeholder="必填"></el-input>
+          <el-input v-model="item.desc" :maxlength="128" placeholder="选填"></el-input>
+        </el-form-item>
+         <el-form-item class="small" label="价格：">
+          <el-input v-model="item.price" :maxlength="128" placeholder="选填"></el-input>
+        </el-form-item>
+        <el-form-item class="small" label="销量：">
+          <el-input v-model="item.count" :maxlength="128" placeholder="选填"></el-input>
         </el-form-item>
         <template v-if="item.click">
           <el-form-item class="small" label="跳转到：">
