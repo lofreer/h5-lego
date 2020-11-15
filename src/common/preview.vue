@@ -14,6 +14,7 @@
         style="text-align: center; width: 375px; background-color: #f2f3f4"
       >
         <iframe
+          v-if="visible"
           id="ifr-preview"
           allowtransparency="yes"
           :src="`http://render.koudaikaoyan.com/${$route.params.pageId || ''}}`"
@@ -46,9 +47,9 @@ export default {
   watch: {
     show(val) {
       if (val && document.getElementById("ifr-preview")) {
-        document
-          .getElementById("ifr-preview")
-          .contentWindow.location.reload(true);
+        // document
+        //   .getElementById("ifr-preview")
+        //   .contentWindow.location.reload(true);
       }
       this.visible = this.show;
     },
