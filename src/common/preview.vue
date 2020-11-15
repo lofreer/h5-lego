@@ -5,7 +5,7 @@
     :close-on-click-modal="false"
     :append-to-body="false"
     :visible.sync="visible"
-    @close="$emit('close')"
+    @close="$emit('update:show', false)"
     width="395px"
   >
     <el-row>
