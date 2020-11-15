@@ -32,17 +32,24 @@
       </template>
     </template>
 
+    <template v-if="option.textStyle && option.textStyle.config.length">
+      <h3><i class="el-icon-setting"></i> {{ option.textStyle.title }}</h3>
+      <template v-for="(item, idx) in option.textStyle.config">
+        <form-item :item="item" :index="idx" :key="`${idx}-c`"></form-item>
+      </template>
+    </template>
+
     <template v-if="option.action">
       <h3><i class="el-icon-setting"></i> {{ option.action.title }}</h3>
       <template v-if="option.action.type === 'vertical-item-click'">
-        <vertical-item :items="option.action.config"></vertical-item>
+        <grid-item :items="option.action.config"></grid-item>
       </template>
     </template>
 
     <template v-if="option.data">
       <h3><i class="el-icon-setting"></i> 动态数据配置</h3>
       <template v-for="(item, idx) in option.data">
-        <form-item :item="item" :index="idx" :key="`${idx}-c`"></form-item>
+        <form-item :item="item" :index="idx" :key="`${idx}-d`"></form-item>
       </template>
     </template>
   </el-form>
@@ -56,7 +63,7 @@ export default {
   },
   components: {
     formItem: () => import("../../common/formItem.vue"),
-    verticalItem: () => import("./verticalItem.vue"),
+    gridItem: () => import("./gridItem.vue"),
   },
   props: {
     option: {
