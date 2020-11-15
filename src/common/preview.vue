@@ -46,11 +46,11 @@ export default {
   },
   watch: {
     show(val) {
-      if (val && document.getElementById("ifr-preview")) {
-        // document
-        //   .getElementById("ifr-preview")
-        //   .contentWindow.location.reload(true);
-      }
+      // if (val && document.getElementById("ifr-preview")) {
+      //   document
+      //     .getElementById("ifr-preview")
+      //     .contentWindow.location.reload(true);
+      // }
       this.visible = this.show;
     },
   },
