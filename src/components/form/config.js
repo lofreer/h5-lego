@@ -2,10 +2,6 @@ module.exports = {
   title: '表单',
   domId: '',
   domName: '',
-  assert: {
-    script: ['./js/form/form.min.js'],
-    style: ['./js/form/form.min.css']
-  },
   base: [
     {
       type: 'text',
@@ -62,6 +58,32 @@ module.exports = {
         }, {
           name: '宽高自适应',
           val: 'contain'
+        }
+      ]
+    }, {
+      type: 'select',
+      label: '背景位置',
+      attr: 'background-position',
+      val: 'inherit',
+      options: [
+        {
+          name: '无',
+          val: 'inherit'
+        }, {
+          name: '左',
+          val: 'left'
+        }, {
+          name: '居中',
+          val: 'center'
+        }, {
+          name: '右',
+          val: 'right'
+        }, {
+          name: '上',
+          val: 'top'
+        }, {
+          name: '下',
+          val: 'bottom'
         }
       ]
     }, {
