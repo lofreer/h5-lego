@@ -11,7 +11,7 @@
     >
       <div class="swiper-wrapper">
         <div class="swiper-slide" v-for="(banner,index) in banners" :key="index" @click="handleClick(banner)">
-          <img v-if="banner.val" :src="banner.val" />
+          <img v-if="banner.val" :src="banner.val" :style="getCardStyle" />
           <div v-else class="image-placeholder">
             <i class="fa fa-caret-square-o-right"></i>
           </div>
@@ -50,6 +50,14 @@ export default {
         }
       });
       return ret.join(";");
+    },
+    getCardStyle() {
+      const ret = []
+      this.component.cardStyle.config.forEach((item) => {
+        const unit = item.unit || "";
+        item.val && ret.push(item.attr + ":" + item.val + unit);
+      })
+      return ret.join(';')
     },
   },
   watch: {
@@ -109,10 +117,11 @@ export default {
     }
   },
   mounted() {
-    const autoplay = this.component.base.find((v) => v.attr === "autoplay").val;
+    const autoplay = (this.component.base.find((v) => v.attr === "autoplay") || {}).val;
+    const loop = (this.component.base.find((v) => v.attr === "loop") || {}).val;
     this.swiper = new Swiper("#" + this.component.domId, {
       autoplay: autoplay || false,
-      loop: true,
+      loop: loop || false,
 	    speed: 300,
       slidesPerView: 1.2,
       centeredSlides: true,
@@ -124,7 +133,7 @@ export default {
             let slide = slides.eq(i)
             let progress = slides[i].progress
             slide.css({'opacity': '','background': ''});slide.transform('') //清除样式
-            slide.transform('scale('+(1 - Math.abs(progress)/(slides.length*1.8))+')')
+            slide.transform('scale('+(1 - Math.abs(progress)/12)+')')
           }
         },
         setTransition: function(transition) {
@@ -156,7 +165,6 @@ export default {
     img {
       width: 100%;
       height: 100%;
-      border-radius: 5px;
       object-fit: cover;
     }
   }

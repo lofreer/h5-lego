@@ -61,6 +61,32 @@ module.exports = {
         }
       ]
     }, {
+      type: 'select',
+      label: '背景位置',
+      attr: 'background-position',
+      val: 'inherit',
+      options: [
+        {
+          name: '无',
+          val: 'inherit'
+        }, {
+          name: '左',
+          val: 'left'
+        }, {
+          name: '居中',
+          val: 'center'
+        }, {
+          name: '右',
+          val: 'right'
+        }, {
+          name: '上',
+          val: 'top'
+        }, {
+          name: '下',
+          val: 'bottom'
+        }
+      ]
+    }, {
       type: 'input-number',
       label: '字体大小',
       attr: 'font-size',

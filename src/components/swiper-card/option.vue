@@ -25,10 +25,17 @@
       </template>
     </template>
 
+    <template v-if="option.cardStyle && option.cardStyle.config.length">
+      <h3><i class="el-icon-setting"></i> {{ option.cardStyle.title }}</h3>
+      <template v-for="(item, idx) in option.cardStyle.config">
+        <form-item :item="item" :index="idx" :key="`${idx}-b`"></form-item>
+      </template>
+    </template>
+
     <template v-if="option.others && option.others.config.length">
       <h3><i class="el-icon-setting"></i> {{ option.others.title }}</h3>
       <template v-for="(item, idx) in option.others.config">
-        <form-item :item="item" :index="idx" :key="`${idx}-b`"></form-item>
+        <form-item :item="item" :index="idx" :key="`${idx}-c`"></form-item>
       </template>
     </template>
 
