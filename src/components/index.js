@@ -47,6 +47,10 @@ export default {
   'comp-swiper-banner': () => import('./swiper-banner'),
   'comp-swiper-banner-config': () => import('./swiper-banner/config'),
   'comp-swiper-banner-option': () => import('./swiper-banner/option'),
+  // 轮播图 卡片式
+  'comp-swiper-card': () => import('./swiper-card'),
+  'comp-swiper-card-config': () => import('./swiper-card/config'),
+  'comp-swiper-card-option': () => import('./swiper-card/option'),
   // 页面FAQ
   'comp-page-faq': () => import('./page-faq'),
   'comp-page-faq-config': () => import('./page-faq/config'),

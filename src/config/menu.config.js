@@ -91,6 +91,10 @@ module.exports = [
         text: '轮播图',
         icon: 'fa-caret-square-o-right'
       }, {
+        key: 'comp-swiper-card',
+        text: '轮播图2',
+        icon: 'fa-caret-square-o-right'
+      }, {
         key: 'comp-scroll-left',
         text: '横向滚动',
         icon: 'fa-exchange'

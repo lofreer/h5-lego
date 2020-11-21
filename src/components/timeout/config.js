@@ -2,9 +2,6 @@ module.exports = {
   title: '倒计时',
   domId: '',
   domName: '',
-  assert: {
-    script: ['./js/body/timeout.js']
-  },
   style: [
     {
       type: 'datetime',

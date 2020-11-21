@@ -2,9 +2,6 @@ module.exports = {
   title: '横向滚动',
   domId: '',
   domName: '',
-  assert: {
-    script: ['./js/libs/iscroll.min.js', './js/body/scroll-left.js']
-  },
   style: [
     {
       type: 'select',
