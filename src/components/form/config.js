@@ -2,10 +2,6 @@ module.exports = {
   title: '表单',
   domId: '',
   domName: '',
-  assert: {
-    script: ['./js/form/form.min.js'],
-    style: ['./js/form/form.min.css']
-  },
   base: [
     {
       type: 'text',

@@ -2,9 +2,6 @@ module.exports = {
   title: '滚动新闻',
   domId: '',
   domName: '',
-  assert: {
-    script: ['./js/body/new-marquee.js']
-  },
   style: [
     {
       type: 'radio',

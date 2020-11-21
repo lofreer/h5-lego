@@ -16,19 +16,6 @@ module.exports = {
         val: false
       }],
       isNecessary: false
-    }, {
-      type: 'radio',
-      label: '显示分页',
-      attr: 'pagination',
-      val: true,
-      options: [{
-        name: '是',
-        val: true
-      }, {
-        name: '否',
-        val: false
-      }],
-      isNecessary: false
     }
   ],
   style: [

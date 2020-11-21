@@ -2,9 +2,6 @@ module.exports = {
   title: '楼层导航',
   domId: '',
   domName: '',
-  assert: {
-    script: ['./js/libs/iscroll.min.js', './js/body/floor-menu.js']
-  },
   style: [
     {
       type: 'color-picker',
